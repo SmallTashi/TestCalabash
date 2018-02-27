@@ -1,0 +1,37 @@
+<resources>
+    <string name="app_name">CalabashWord</string>
+    <string name="loading">加载中…</string>
+    <string name="phonenum">手机号/邮箱</string>
+    <string name="password">密码</string>
+    <string name="login">登  陆</string>
+    <string name="forgot_password">忘记密码</string>
+    <string name="line">|</string>
+    <string name="register">注册</string>
+    <string name="line_next">—</string>
+    <string name="tip">第三方账号登陆</string>
+    <string name="register_phone_number">请输入手机号</string>
+    <string name="message">验证码</string>
+    <string name="next_tip">下一步</string>
+    <string name="verification_code">验证码</string>
+    <string name="get_verification">获取验证码</string>
+    <string name="register_tip">点击“下一步”即接受《葫芦世界用户协议》和《隐私政策》</string>
+    <string name="theme_world">主题世界</string>
+    <string name="recommend">推荐</string>
+    <string name="add">+</string>
+    <string name="find_more">发现</string>
+    <string name="personal">我的</string>
+    <string name="wb_image_description">使用微博登陆Calabash</string>
+    <string name="qq_image_description">使用QQ登陆Calabash</string>
+    <string name="wx_image_description">使用微信登陆Calabash</string>
+    <string name="logo_bar">葫芦logo</string>
+    <string name="search_bar">点击搜索</string>
+
+    <string name="follow_tab_item">发现</string>
+    <string name="themt_world_tab_item">主题世界</string>
+    <string name="personal_tab_item">我的</string>
+    <string name="recommend_tab_item">推荐</string>
+    <string name="focus_tab_item">分类</string>
+    <string name="following">关注</string>
+    <string name="followed">粉丝</string>
+    <string name="ing_ed_divider">|</string>
+</resources>

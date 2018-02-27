@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#FFFFFF</color>
+    <color name="colorPrimaryDark">#FFFFFF</color>
+    <color name="colorAccent">#000000</color>
+    <color name="textColor">#2D2D2D</color>
+    <color name="unSelectDrawable">#959595</color>
+    <color name="allBackground">#b1b1b1</color>
+    <color name="Whilt">#FFFFFF</color>
+    <color name="login_button">#8C8C8C</color>
+    <color name="login_color">#2d2d2d</color>
+    <color name="verification_color">#0057FF</color>
+    <color name="register_hint">#D5D5D5</color>
+    <color name="Select">#383838</color>
+    <color name="un_select">#b1b1b1</color>
+    <color name="button">#ffec02</color>
+    <color name="find_select">#FFE301</color>
+
+</resources>

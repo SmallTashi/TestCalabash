@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:theme="@style/MainTheme"
+    tools:context="com.tashi.testcalabash.MainActivity">
+
+    <!--TODO:去除TabLayout的点击动画-->
+    <android.support.v4.view.ViewPager
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <FrameLayout
+        android:id="@+id/find_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/tab_bar"
+       />
+
+    <RelativeLayout
+        android:id="@+id/tab_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        >
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true">
+
+            <android.support.design.widget.TabLayout
+                android:id="@+id/tabLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="bottom"
+                app:tabIndicatorColor="@color/un_select"
+                app:tabMode="fixed"
+                android:theme="@style/TabSelect"
+                app:tabSelectedTextColor="@color/Select">
+
+                <android.support.design.widget.TabItem
+                    android:id="@+id/theme_item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:icon="@mipmap/theme_unsel"
+                    android:text="@string/themt_world_tab_item"
+                    app:tabGravity="fill" />
+
+                <android.support.design.widget.TabItem
+                    android:id="@+id/find_item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:icon="@mipmap/recommed_unsel"
+                    android:text="@string/recommend_tab_item"
+                    app:tabGravity="fill" />
+
+                <android.support.design.widget.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="false"
+                    app:tabGravity="fill" />
+
+                <android.support.design.widget.TabItem
+                    android:id="@+id/recommend_item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:icon="@mipmap/follow_unsel"
+                    android:text="@string/follow_tab_item"
+                    app:tabGravity="fill" />
+
+                <android.support.design.widget.TabItem
+                    android:id="@+id/personal_item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:icon="@mipmap/mine_unsel"
+                    android:text="@string/personal_tab_item"
+                    app:tabGravity="fill" />
+            </android.support.design.widget.TabLayout>
+        </FrameLayout>
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:clickable="true"
+            android:focusable="true"
+            android:foregroundGravity="center_horizontal"
+            android:src="@mipmap/home_create"
+            tools:ignore="ContentDescription" />
+    </RelativeLayout>
+</RelativeLayout>
