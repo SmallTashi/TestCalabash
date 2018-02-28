@@ -23,7 +23,6 @@
         <activity
             android:name=".LoginActivity"
             android:theme="@style/AppTheme.Full" />
-        <activity android:name=".Fragment.FindFragmentActivity"></activity>
     </application>
 
 </manifest>

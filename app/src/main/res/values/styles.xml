@@ -23,13 +23,12 @@
         <item name="windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
     </style>
-    <style name="TabSelect" parent="Widget.Design.TabLayout">
-        <item name="tabIndicatorColor">@null</item>
-        <item name="android:textSize">12sp</item>
-        <item name="tabIndicatorHeight">0dp</item>
-
+    <style name="TabSelect" parent="Base.Widget.Design.TabLayout">
+        <item name="tabIndicatorColor">@color/Whilt</item>
+        <item name="android:textSize">10sp</item>
+        <item name="tabIndicatorHeight">3dp</item>
         <item name="tabSelectedTextColor">#000000</item>
-        <item name="android:textAppearance">@style/Base.TextAppearance.AppCompat</item>
+        <item name="android:textAppearance">@style/Base.Widget.AppCompat.EditText</item>
     </style>
 
 </resources>

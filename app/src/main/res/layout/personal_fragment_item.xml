@@ -8,18 +8,24 @@
         android:background="@mipmap/personal_top_bg"
         android:padding="10dp"
         android:layout_width="match_parent"
-
         android:layout_height="wrap_content">
-        <ImageView
+        <RelativeLayout
             android:id="@+id/head"
-            android:src="@mipmap/ic_head"
+            android:padding="2dp"
+            android:scaleType="centerInside"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_marginTop="45dp"
             android:layout_marginBottom="10dp"
             android:layout_marginStart="10dp"
             android:layout_marginLeft="10dp"
-            tools:ignore="ContentDescription" />
+            >
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@mipmap/ic_head"
+                tools:ignore="ContentDescription" />
+        </RelativeLayout>
         <LinearLayout
             android:layout_marginTop="45dp"
             android:id="@+id/name_exp"
@@ -38,8 +44,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView
+                    android:layout_gravity="center"
                     tools:text="user_name"
-                    android:textSize="16sp"
+                    android:textSize="20sp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
                 <!--<ImageView-->
@@ -57,10 +64,31 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <ImageView
+                android:id="@+id/bar"
+                android:layout_gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@mipmap/personal_grade_bg"
                 />
+            <TextView
+                android:textSize="12sp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="3dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/_1_10"
+                android:layout_marginStart="3dp" />
+            <TextView
+                android:padding="2dp"
+                android:background="@drawable/user_head_bg"
+                android:layout_gravity="center"
+                android:layout_marginLeft="3dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="13sp"
+                android:textColor="@color/Whilt"
+                tools:text="LV.1"
+                android:layout_marginStart="3dp" />
 
         </LinearLayout>
             <LinearLayout
@@ -70,35 +98,44 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView
+                    android:textSize="14sp"
+                    android:layout_gravity="center"
                     android:id="@+id/following"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/following"
                     />
                 <TextView
+                    android:layout_gravity="center"
                     android:id="@+id/following_num"
                     android:layout_marginLeft="8dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     tools:text="数量"
+                    android:textSize="14sp"
                     android:layout_marginStart="8dp" />
                 <TextView
+                    android:layout_gravity="center"
                     android:id="@+id/divider"
                     android:layout_marginLeft="8dp"
                     android:layout_marginRight="5dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/ing_ed_divider"
-                    android:layout_marginStart="8dp" />
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="5dp" />
                 <TextView
+                    android:layout_gravity="center"
                     android:id="@+id/followed"
                     android:layout_marginStart="8dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/followed"
-
+                    android:textSize="14sp"
                     android:layout_marginLeft="8dp" />
                 <TextView
+                    android:textSize="14sp"
+                    android:layout_gravity="center"
                     android:id="@+id/followed_num"
                     android:layout_marginLeft="8dp"
                     android:layout_width="wrap_content"

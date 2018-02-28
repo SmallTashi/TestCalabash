@@ -34,4 +34,6 @@
     <string name="following">关注</string>
     <string name="followed">粉丝</string>
     <string name="ing_ed_divider">|</string>
+    <string name="_1_10">1/10</string>
+    <string name="my_shelf">我的书架</string>
 </resources>

@@ -3,12 +3,13 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="#03A9F4"
     android:layout_height="match_parent">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar_find"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="55dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
@@ -19,6 +20,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:theme="@style/TabSelect"
+        android:background="@drawable/find_fragment_recommend_bg"
         android:layout_alignBottom="@+id/toolbar_find"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="13dp"
@@ -26,11 +28,14 @@
         tools:ignore="RelativeOverlap">
 
         <android.support.design.widget.TabItem
+            android:id="@+id/find_find"
+            android:background="@color/Whilt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/recommend_tab_item" />
 
         <android.support.design.widget.TabItem
+            android:id="@+id/find_divide"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/focus_tab_item" />
@@ -44,13 +49,15 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
         android:src="@mipmap/recommend_icon_search1"
         tools:ignore="ContentDescription" />
 
-    <WebView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/toolbar_find" />
-
-
+    <!--<WebView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_below="@id/toolbar_find" />-->
+    <!---->
 </RelativeLayout>

@@ -22,9 +22,10 @@
         android:layout_marginLeft="60dp"
         android:layout_marginRight="60dp"
         android:layout_marginStart="60dp"
-        android:layout_marginTop="210dp"
+        android:layout_marginTop="200dp"
         android:alpha="0.5"
-        android:background="@drawable/background_login">
+        android:background="@drawable/abc_popup_background_mtrl_mult"
+        tools:ignore="PrivateResource">
 
         <EditText
             android:id="@+id/edit_phonenum"
@@ -33,7 +34,6 @@
             android:layout_marginBottom="4dp"
             android:layout_marginTop="4dp"
             android:background="@null"
-            android:cursorVisible="false"
             android:digits="123456789.@zxcvbnmlkjhfgdsaqwertyuiopQWERTYUIOPASDFGHJKLZXCVBNM"
             android:drawableLeft="@mipmap/signin_phone"
             android:drawablePadding="10dp"
@@ -41,48 +41,59 @@
             android:hint="@string/phonenum"
             android:padding="8sp"
             android:singleLine="true"
-            android:textColor="@color/Whilt"
-            android:textSize="15sp" />
+            android:textSize="15sp"
+            />
 
     </RelativeLayout>
 
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/relativeLayout5"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@id/relativeLayout2"
-        android:layout_alignLeft="@id/relativeLayout2"
-        android:layout_alignRight="@id/relativeLayout2"
-        android:layout_alignStart="@id/relativeLayout2"
         android:layout_below="@id/relativeLayout2"
-        android:layout_marginTop="36dp"
+        android:layout_marginEnd="60dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginRight="60dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="33dp"
         android:alpha="0.5"
-        android:background="@drawable/background_login"
+        android:background="@drawable/abc_popup_background_mtrl_mult"
         tools:ignore="PrivateResource">
 
         <EditText
             android:id="@+id/edit_password"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="4dp"
             android:layout_marginTop="4dp"
+            android:layout_weight="8.5"
             android:background="@null"
-            android:cursorVisible="false"
             android:digits="123456789.@zxcvbnmlkjhfgdsaqwertyuiopQWERTYUIOPASDFGHJKLZXCVBNM"
-            android:drawableEnd="@mipmap/see_passwd"
             android:drawableLeft="@mipmap/signin_password"
             android:drawablePadding="10dp"
-            android:drawableRight="@mipmap/see_passwd"
             android:drawableStart="@mipmap/signin_password"
             android:hint="@string/password"
             android:padding="8sp"
             android:password="true"
             android:singleLine="true"
-            android:textColor="@color/colorPrimary"
             android:textSize="15sp"
             tools:ignore="Deprecated,TextFields" />
 
-    </RelativeLayout>
+        <ImageView
+            android:padding="8dp"
+            android:id="@+id/ss_password"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="@null"
+            android:clickable="true"
+            android:focusable="true"
+            android:scaleType="center"
+            android:src="@mipmap/see_passwd"
+            tools:ignore="ContentDescription" />
+
+    </LinearLayout>
 
     <TextView
         android:id="@+id/forget_password"
@@ -130,34 +141,34 @@
         android:id="@+id/relativeLayout7"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/relativeLayout5"
-        android:layout_alignRight="@+id/relativeLayout5"
         android:layout_below="@+id/relativeLayout5"
+        android:layout_marginEnd="60dp"
         android:layout_marginLeft="60dp"
         android:layout_marginRight="60dp"
         android:layout_marginStart="60dp"
-        android:layout_marginTop="42dp"
+        android:layout_marginTop="45dp"
         android:alpha="0.8"
-        android:background="@color/login_button">
+        >
 
         <Button
+            android:background="@color/login_button"
+            android:layout_margin="8dp"
             android:id="@+id/login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@null"
             android:text="@string/login"
-            android:textColor="@color/login_color"
+            android:textColor="@color/Whilt"
             android:textSize="15sp" />
     </RelativeLayout>
 
-    <TextView
+    <ImageView
         android:id="@+id/line"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/relativeLayout7"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"
-        android:text="@string/line_next"
+        android:src="@drawable/abc_scrubber_track_mtrl_alpha"
         android:textColor="@color/Whilt"
         android:textSize="15sp" />
 
@@ -175,10 +186,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/tip"
-        android:layout_marginEnd="25dp"
-        android:layout_marginLeft="25dp"
-        android:layout_marginRight="25dp"
-        android:layout_marginStart="25dp"
+        android:layout_marginEnd="35dp"
+        android:layout_marginLeft="35dp"
+        android:layout_marginRight="35dp"
+        android:layout_marginStart="35dp"
         android:layout_marginTop="23dp"
         android:orientation="horizontal"
         android:weightSum="3">
@@ -188,24 +199,24 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:src="@mipmap/weixin_logo"
-            android:contentDescription="@string/wx_image_description" />
+            android:contentDescription="@string/wx_image_description"
+            android:src="@mipmap/weixin_logo" />
 
         <ImageView
             android:id="@+id/QQ"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:src="@mipmap/qq_logo"
-            android:contentDescription="@string/qq_image_description" />
+            android:contentDescription="@string/qq_image_description"
+            android:src="@mipmap/qq_logo" />
 
         <ImageView
             android:id="@+id/WB"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:src="@mipmap/weibo_logo"
-            android:contentDescription="@string/wb_image_description" />
+            android:contentDescription="@string/wb_image_description"
+            android:src="@mipmap/weibo_logo" />
 
     </LinearLayout>
 
