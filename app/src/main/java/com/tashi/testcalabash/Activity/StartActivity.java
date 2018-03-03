@@ -1,4 +1,4 @@
-package com.tashi.testcalabash;
+package com.tashi.testcalabash.Activity;
 
 import android.content.Intent;
 import android.os.Build;
@@ -6,9 +6,9 @@ import android.os.Handler;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
 import android.view.WindowManager;
-import android.widget.Button;
+
+import com.tashi.testcalabash.R;
 
 public class StartActivity extends AppCompatActivity {
 

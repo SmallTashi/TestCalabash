@@ -1,4 +1,4 @@
-package com.tashi.testcalabash;
+package com.tashi.testcalabash.Activity;
 
 import android.content.Intent;
 import android.os.Build;
@@ -6,20 +6,21 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.tashi.testcalabash.R;
+import com.tashi.testcalabash.ResetPwdActivity;
+
 /**
  * Created by SmartTashi on 2018/2/21.
- *2018/2/23:
+ * 2018/2/23:
  * 添加BaseActivity（覆写onTouchEvent方法：在其中判断焦点。。。什么什么的
- *                  返回不同的Flag） //大概是这样的吧
+ * 返回不同的Flag） //大概是这样的吧
  * 使其他所有的Activity继承BaseActivity即可实现点击空白区域，隐藏软键盘。
- * 建议：注册界面使用WebView（后期实现）
  */
-
 public class LoginActivity extends BaseActivity {
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
@@ -27,7 +28,6 @@ public class LoginActivity extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_activity);
-//        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         TextView register = findViewById(R.id.register_text);
         register.setClickable(true);
         register.setOnClickListener(new View.OnClickListener() {
@@ -43,18 +43,21 @@ public class LoginActivity extends BaseActivity {
         forget.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent intent=new Intent(loginActivity.this,MainActivity.class);
-//                intent.getAction();
-                Toast forgetPassword = Toast.makeText(getApplicationContext(), "你忘记了密码，我能怎么办嘛...", Toast.LENGTH_LONG);
-                forgetPassword.show();
+                Intent reset = new Intent(LoginActivity.this, ResetPwdActivity.class);
+                startActivity(reset);
+                finish();
             }
-
         });
+        EditText num = findViewById(R.id.edit_phonenum);
+        String number = num.getText().toString();
+        EditText pa = findViewById(R.id.edit_password);
+        String pwd = pa.getText().toString();
+        //TODO 开启网络请求，核对用户身份信息并保持登陆状态
         Button login = findViewById(R.id.login);
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent login = new Intent(LoginActivity.this,MainActivity.class);
+                Intent login = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(login);
                 finish();
             }

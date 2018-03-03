@@ -3,19 +3,19 @@
     android:shape="rectangle"
     >
     <padding android:bottom="6dp"
-        android:left="6dp"
-        android:right="6dp"
+        android:left="3dp"
+        android:right="3dp"
         android:top="6dp"/>
 
     <solid android:color="@null"/>
     <stroke android:color="#87B0FF"
         android:width="0.5dp"
         />
-    <corners android:radius="200dp"
-        android:topRightRadius="200dp"
-        android:bottomRightRadius="200dp"
-        android:bottomLeftRadius="200dp"
-        android:topLeftRadius="200dp"/>
+    <corners android:radius="205dp"
+        android:topRightRadius="205dp"
+        android:bottomRightRadius="205dp"
+        android:bottomLeftRadius="205dp"
+        android:topLeftRadius="205dp"/>
 
 
 </shape>

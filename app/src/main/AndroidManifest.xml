@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".StartActivity"
+            android:name=".Activity.StartActivity"
             android:theme="@style/AppTheme.Full">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,11 +18,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" />
-        <activity android:name=".RegisterActivity" />
+        <activity android:name=".Activity.MainActivity" />
+        <activity android:name=".Activity.RegisterActivity" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".Activity.LoginActivity"
             android:theme="@style/AppTheme.Full" />
+        <activity android:name=".ResetPwdActivity"></activity>
     </application>
 
 </manifest>

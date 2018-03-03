@@ -7,8 +7,6 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:windowIsTranslucent">true</item>
-        <item name="android:textColorLink">#0057FF</item>
-
     </style>
     <style name="MainTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>

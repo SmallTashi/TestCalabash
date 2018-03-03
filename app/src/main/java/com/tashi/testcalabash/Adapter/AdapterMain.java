@@ -1,10 +1,11 @@
-package com.tashi.testcalabash;
+package com.tashi.testcalabash.Adapter;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
 
 /**
  * Created by SmartTahi on 2018/2/23.
+ * Theme
  */
 
 public class AdapterMain extends RecyclerView.Adapter {

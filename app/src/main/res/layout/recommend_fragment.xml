@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     android:background="#4fC3F7"
     android:layout_height="match_parent">
 
@@ -9,6 +8,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="40dp"
+        android:layout_above="@+id/webView"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
@@ -43,13 +43,18 @@
         </RelativeLayout>
 
     </android.support.v7.widget.Toolbar>
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+    <LinearLayout
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/toolbar" >
-    </android.support.v7.widget.RecyclerView>
+        android:layout_below="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <WebView
+            android:id="@+id/webView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+             >
+        </WebView>
+    </LinearLayout>
+
 </RelativeLayout>

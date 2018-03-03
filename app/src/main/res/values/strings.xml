@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">CalabashWord</string>
     <string name="loading">加载中…</string>
-    <string name="phonenum">手机号/邮箱</string>
+    <string name="phonenum">手机号</string>
     <string name="password">密码</string>
     <string name="login">登  陆</string>
     <string name="forgot_password">忘记密码</string>
@@ -36,4 +36,6 @@
     <string name="ing_ed_divider">|</string>
     <string name="_1_10">1/10</string>
     <string name="my_shelf">我的书架</string>
+    <string name="reset_password">重置密码</string>
+    <string name="new_pwd">请输入新密码</string>
 </resources>

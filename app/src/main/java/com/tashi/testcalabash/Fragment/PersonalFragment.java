@@ -13,7 +13,7 @@ import com.tashi.testcalabash.R;
  * Created by SmartTahi on 2018/2/27.
  */
 
-public class PersonalFragmenr extends Fragment {
+public class PersonalFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.personal_fragment,container,false);
     }
