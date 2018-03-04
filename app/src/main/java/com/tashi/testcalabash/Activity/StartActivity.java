@@ -26,7 +26,7 @@ public class StartActivity extends AppCompatActivity {
                 startActivity(start);
                 finish();
             }
-        },4000);
+        },3000);
 //        Button open = findViewById(R.id.button);
 //        open.setOnClickListener(new View.OnClickListener() {
 //            @Override

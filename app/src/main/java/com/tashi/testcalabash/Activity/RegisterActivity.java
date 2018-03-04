@@ -15,7 +15,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.tashi.testcalabash.R;
-import com.tashi.testcalabash.ResetPwdActivity;
 
 import static android.widget.Toast.LENGTH_LONG;
 

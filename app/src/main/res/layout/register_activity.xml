@@ -25,7 +25,7 @@
                 android:layout_centerVertical="true"
                 android:text="@string/register"
                 android:textColor="@color/login_color"
-                android:textSize="15sp" />
+                android:textSize="17sp" />
 
             <ImageView
                 android:id="@+id/back_register"
@@ -50,7 +50,7 @@
         android:layout_marginLeft="81dp"
         android:layout_marginRight="81dp"
         android:layout_marginStart="81dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="42dp"
         android:divider="@drawable/line_decoration"
         android:dividerPadding="0.5dp"
         android:orientation="vertical"
@@ -68,7 +68,7 @@
             android:singleLine="true"
             android:textColorHint="@color/register_hint"
             android:textCursorDrawable="@drawable/line_decoration"
-            android:textSize="12sp" />
+            android:textSize="14sp" />
 
         <EditText
             android:id="@+id/register_ac_2"
@@ -83,7 +83,7 @@
             android:singleLine="true"
             android:textColorHint="@color/register_hint"
             android:textCursorDrawable="@drawable/line_decoration"
-            android:textSize="12sp" />
+            android:textSize="14sp" />
 
         <LinearLayout
             android:id="@+id/v_linear_layout"
@@ -104,7 +104,7 @@
                 android:hint="@string/verification_code"
                 android:textColorHint="@color/register_hint"
                 android:textCursorDrawable="@drawable/line_decoration"
-                android:textSize="12sp"
+                android:textSize="14sp"
                 tools:ignore="NestedWeights" />
 
             <TextView
@@ -117,7 +117,7 @@
                 android:gravity="center"
                 android:text="@string/get_verification"
                 android:textColor="@color/verification_color"
-                android:textSize="12sp" />
+                android:textSize="13sp" />
 
         </LinearLayout>
 
@@ -145,18 +145,18 @@
         android:layout_marginLeft="78dp"
         android:layout_marginRight="78dp"
         android:layout_marginStart="78dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="55dp"
         android:background="#8C8C8C"
         android:text="@string/next_tip"
         android:textColor="@color/Whilt"
-        android:textSize="15sp" />
+        android:textSize="17sp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/button_next"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="35dp"
         android:text="@string/register_tip"
         android:textSize="13sp" />
 
