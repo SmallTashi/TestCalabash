@@ -1,221 +1,174 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/Whilt"
-    android:theme="@style/AppTheme"
+    android:id="@+id/drawer_layout"
     tools:context="com.tashi.testcalabash.Activity.MainActivity">
 
-    <FrameLayout
-        android:id="@+id/find_fragment"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/tab_bar"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-      />
-    <LinearLayout
-        android:orientation="horizontal"
-        android:id="@+id/tab_bar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="15dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginRight="15dp"
-        >
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
-<RelativeLayout
-    android:id="@+id/theme_item"
-    android:background="@color/Whilt"
-    android:layout_centerInParent="true"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    tools:ignore="UselessParent">
-    <ImageView
-        android:id="@+id/q"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
         android:background="@color/Whilt"
-        android:src="@mipmap/theme_unsel"
-        tools:ignore="ContentDescription" />
+        android:theme="@style/AppTheme">
+        <FrameLayout
+            android:id="@+id/find_fragment"
+            android:layout_above="@id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
 
-    <TextView
-        android:layout_marginBottom="2dp"
-        android:layout_marginTop="4dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/q"
-        android:layout_centerHorizontal="true"
-        android:background="@null"
-        android:text="@string/themt_world_tab_item"
-        android:textSize="12sp" />
-</RelativeLayout>
-
-        </RelativeLayout>
-        <RelativeLayout
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            >
-        <RelativeLayout
-            android:id="@+id/recommend_item"
-            android:background="@color/Whilt"
-            android:layout_centerInParent="true"
+        <LinearLayout
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:ignore="UselessParent">
-            <ImageView
-                android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal"
+            android:baselineAligned="false">
+
+            <RelativeLayout
+                android:id="@+id/theme_item"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:background="@color/Whilt"
-                android:id="@+id/e"
-                android:src="@mipmap/recommed_unsel"
-                android:layout_width="wrap_content"
+                android:gravity="center"
+                android:padding="5dp">
+
+                <ImageView
+                    android:id="@+id/q"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="2dp"
+                    android:layout_marginLeft="13dp"
+                    android:layout_marginStart="13dp"
+                    android:background="@color/Whilt"
+                    android:padding="2dp"
+                    android:src="@mipmap/theme_unsel"
+                    tools:ignore="ContentDescription" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/q"
+                    android:layout_marginTop="4dp"
+                    android:background="@null"
+                    android:text="@string/themt_world_tab_item"
+                    android:textSize="12sp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/recommend_item"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                tools:ignore="ContentDescription" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/e"
-                android:layout_centerHorizontal="true"
-                android:layout_marginBottom="2dp"
-                android:layout_marginTop="4dp"
-                android:background="@null"
-                android:text="@string/recommend"
-                android:textSize="12sp"
-                />
-        </RelativeLayout>
-        </RelativeLayout>
-        <RelativeLayout
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            >
-            <ImageButton
-                android:layout_width="50dp"
-                android:layout_height="52.5dp"
-                android:layout_centerInParent="true"
-                android:src="@mipmap/home_create"
-                tools:ignore="ContentDescription" />
-        </RelativeLayout>
-
-        <RelativeLayout
-        android:layout_weight="1"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        >
-        <RelativeLayout
-
-            android:id="@+id/find_item"
-            android:background="@color/Whilt"
-            android:layout_centerInParent="true"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:ignore="UselessParent">
-            <ImageButton
-                android:layout_centerHorizontal="true"
+                android:layout_weight="1"
                 android:background="@color/Whilt"
-                android:id="@+id/as"
-                android:src="@mipmap/follow_unsel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:ignore="ContentDescription" />
-            <TextView
-                android:layout_marginBottom="2dp"
-                android:layout_marginTop="4dp"
-                android:textSize="12sp"
-                android:background="@null"
-                android:layout_centerHorizontal="true"
-                android:layout_below="@id/as"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/find_more"
-                />
-        </RelativeLayout>
-        </RelativeLayout>
-        <RelativeLayout
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            >
-        <RelativeLayout
-            android:id="@+id/personal_item"
-            android:background="@color/Whilt"
-            android:layout_centerInParent="true"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:ignore="UselessParent">
-            <ImageButton
-                android:layout_marginTop="1dp"
-                android:id="@+id/v"
-                android:src="@mipmap/mine_unsel"
-                android:layout_centerHorizontal="true"
+                android:gravity="center"
+                android:padding="5dp">
+
+                <ImageView
+                    android:id="@+id/e"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="2dp"
+                    android:background="@color/Whilt"
+                    android:padding="2dp"
+                    android:src="@mipmap/recommed_unsel"
+                    tools:ignore="ContentDescription" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/e"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="4dp"
+                    android:background="@null"
+                    android:text="@string/recommend"
+                    android:textSize="12sp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:background="@color/Whilt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:ignore="ContentDescription" />
-            <TextView
-                android:layout_marginBottom="2dp"
-                android:textSize="12sp"
-                android:layout_marginTop="4dp"
-                android:layout_centerHorizontal="true"
-                android:background="@null"
-                android:layout_below="@id/v"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/personal"
-                />
-        </RelativeLayout>
-        </RelativeLayout>
+                android:gravity="center">
 
-                <!--<android.support.design.widget.TabItem-->
-                    <!--android:id="@+id/find_item"-->
-                    <!--android:clickable="true"-->
-                    <!--android:theme="@style/TabSelect"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:icon="@mipmap/recommed_unsel"-->
-                    <!--android:text="@string/recommend_tab_item"-->
-                    <!--app:tabGravity="center"-->
-                    <!--android:focusable="true" />-->
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:padding="2dp"
+                    android:src="@mipmap/home_create"
+                    tools:ignore="ContentDescription" />
+            </RelativeLayout>
 
-                <!--<android.support.design.widget.TabItem-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:theme="@style/TabSelect"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:clickable="false"-->
-                    <!--app:tabGravity="fill" />-->
+            <RelativeLayout
+                android:id="@+id/find_item"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/Whilt"
+                android:gravity="center"
+                android:padding="5dp">
 
+                <ImageView
+                    android:id="@+id/as"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="2dp"
+                    android:background="@color/Whilt"
+                    android:padding="2dp"
+                    android:src="@mipmap/follow_unsel"
+                    tools:ignore="ContentDescription" />
 
-                <!--<android.support.design.widget.TabItem-->
-                    <!--android:clickable="true"-->
-                    <!--android:id="@+id/recommend_item"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:theme="@style/TabSelect"-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/as"
+                    android:layout_marginTop="4dp"
+                    android:background="@null"
+                    android:text="@string/find_more"
+                    android:textSize="12sp" />
+            </RelativeLayout>
 
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:icon="@mipmap/follow_unsel"-->
-                    <!--android:text="@string/follow_tab_item"-->
-                    <!--app:tabGravity="center"-->
-                    <!--android:focusable="true" />-->
+            <RelativeLayout
+                android:id="@+id/personal_item"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/Whilt"
+                android:gravity="center"
+                android:padding="5dp">
 
-                <!--<android.support.design.widget.TabItem-->
-                    <!--android:id="@+id/personal_item"-->
-                    <!--android:theme="@style/TabSelect"-->
+                <ImageView
+                    android:id="@+id/v"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/Whilt"
+                    android:padding="2dp"
+                    android:src="@mipmap/mine_unsel"
+                    tools:ignore="ContentDescription" />
 
-                    <!--android:clickable="true"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:icon="@mipmap/mine_unsel"-->
-                    <!--android:text="@string/personal_tab_item"-->
-                    <!--app:tabGravity="center"-->
-                    <!--android:focusable="true" />-->
-    </LinearLayout>
-</RelativeLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/v"
+                    android:layout_marginTop="4dp"
+                    android:background="@null"
+
+                    android:text="@string/personal"
+                    android:textSize="12sp" />
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+    <ListView
+        android:dividerHeight="0.5dp"
+        android:divider="@color/un_select"
+        android:id="@+id/left"
+        android:layout_width="180dp"
+        android:gravity="start"
+        android:layout_height="match_parent"/>
+
+</android.support.v4.widget.DrawerLayout>

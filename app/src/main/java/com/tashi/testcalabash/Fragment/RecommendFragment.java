@@ -38,7 +38,6 @@ public class RecommendFragment extends Fragment {
         settings.setLoadWithOverviewMode(true);
         settings.setBuiltInZoomControls(true);
         settings.setSupportZoom(true);//设定支持缩放
-
         //打开的网址
         webview.loadUrl("https://www.huluzc.com/profile/6be9bbf6d02011e7b8c00242ac120003");
     }

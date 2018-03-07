@@ -1,7 +1,6 @@
 package com.tashi.testcalabash.Fragment;
 
 import android.annotation.SuppressLint;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
@@ -14,7 +13,6 @@ import android.view.ViewGroup;
 import com.tashi.testcalabash.R;
 
 import java.util.ArrayList;
-import java.util.zip.Inflater;
 
 public class FindFragment extends Fragment{
     private ArrayList<Integer> mViewPagerImage;
@@ -34,4 +32,6 @@ public class FindFragment extends Fragment{
         tabLayout.addTab(tabLayout.newTab().setText("推荐"));
         tabLayout.addTab(tabLayout.newTab().setText("关注"));
     }
+
+
 }

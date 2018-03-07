@@ -9,10 +9,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.tashi.testcalabash.R;
-import com.tashi.testcalabash.ResetPwdActivity;
 
 /**
  * Created by SmartTashi on 2018/2/21.

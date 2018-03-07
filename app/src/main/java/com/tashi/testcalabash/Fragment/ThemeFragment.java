@@ -28,24 +28,6 @@ public class ThemeFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-//        @SuppressLint("HandlerLeak")
-//        Handler mHandler = new Handler(){
-//            public void handleMessage(Message message){
-//                switch (message.what){
-//                    case T
-//                }
-//            }
-//        };
-    }
-}
-class themeThread implements Runnable{
-    List Test = new ArrayList();
-    @Override
-    public void run() {
-        while (!Thread.currentThread().isInterrupted()){
-            Message message = new Message();
-            message.what=1;
 
-        }
     }
 }

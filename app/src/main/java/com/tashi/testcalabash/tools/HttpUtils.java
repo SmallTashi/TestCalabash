@@ -1,17 +1,16 @@
 package com.tashi.testcalabash.tools;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
+import android.net.Network;
+import android.os.Handler;
+
 import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.OutputStream;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
-import java.net.URLConnection;
+
 
 import javax.net.ssl.HttpsURLConnection;
 
@@ -20,15 +19,15 @@ import javax.net.ssl.HttpsURLConnection;
  * 开启网络请求Post与Get
  */
 public class HttpUtils {
-    private StringBuilder result =null;
+    private HttpsURLConnection connection = null;
     private BufferedReader mReader = null;
-//获得验证码
-    public void GetVerif(final String parameter,final String api) {
+
+    public void GetVerif(final String parameter, final String api, final Callback callback) {
+        if(!Network)
+        final Handler handler = new Handler();
         new Thread(new Runnable() {
             @Override
             public void run() {
-                BufferedReader reader = null;
-                HttpsURLConnection connection = null;
                 try {
                     //"https://www.huluzc.com/calabash/code/phone?"+"&phone="+pa+"&category=0"
                     URL url = new URL(api);
@@ -43,29 +42,41 @@ public class HttpUtils {
                         connection.setDoInput(true);
                         connection.setDoOutput(true);
                         connection.setUseCaches(false);
-                        connection.setRequestProperty("Content-Type","application/json;charset=UTF-8");
-                        connection.setRequestProperty("Content-Length",String.valueOf(parameter.length()));
+                        connection.setRequestProperty("Content-Type", "application/json;charset=UTF-8");
+                        connection.setRequestProperty("Content-Length", String.valueOf(parameter.length()));
                         OutputStream out = connection.getOutputStream();
                         out.write(parameter.getBytes());
                         out.close();
                     }
-                    reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-                    result = new StringBuilder();
-                    String line;
-                    while ((line = reader.readLine()) != null) {
-                        result.append(line);
+                    if (connection.getResponseCode() == 200001 ||connection.getResponseCode()==204001) {
+                        final byte[] temp = ReadStream(connection.getInputStream());
+                        handler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                callback.Success(new Response(temp));
+                                //使用回调，返回请求得到的数据
+                            }
+                        });
+                        //缓存图片资源
+                    }else {
+                        handler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                callback.Filed(new Exception("加载失败"));
+                            }
+                        });
                     }
+
+
                     //TODO
                 } catch (ProtocolException e) {
-                    e.printStackTrace();
-                } catch (MalformedURLException e) {
                     e.printStackTrace();
                 } catch (IOException e) {
                     e.printStackTrace();
                 } finally {
-                    if (reader != null) {
+                    if (mReader != null) {
                         try {
-                            reader.close();
+                            mReader.close();
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
@@ -74,15 +85,49 @@ public class HttpUtils {
                         connection.disconnect();
                     }
                 }
-//                if(result!=null){
-//                    return result.toString();
-//                }else {
-//                    return "Wrong!";
-//                }
             }
         }).start();
     }
+
+    public static final byte[] ReadStream(InputStream in) {
+        //建立通道对象
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        //创建保存数据的字节数组
+        byte[] temp = new byte[1024];
+        //开始读取数据
+        int len ;
+        try {
+            if (in != null) {
+                while ((len = in.read(temp)) != -1) {
+                    outputStream.write(temp, 0, len);
+                    //数据由输入流写入字节数组，
+                    //由字节数组写入到输出流中
+                }
+                in.close();
+            }
+            outputStream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return outputStream.toByteArray();
+    }
+
+    public interface Callback{
+        void Success(Response response);
+
+        void Filed (Exception e);
+    }
+    class Response{
+        private int mCode;
+        private String mInfo;
+        private byte[] mDate;
+        Response(byte[] response){
+            String stringDate = new String(response);
+
+        }
+        }
 }
+
 
 
 
