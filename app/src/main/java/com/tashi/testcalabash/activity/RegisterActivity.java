@@ -1,4 +1,4 @@
-package com.tashi.testcalabash.Activity;
+package com.tashi.testcalabash.activity;
 
 
 import android.content.Intent;

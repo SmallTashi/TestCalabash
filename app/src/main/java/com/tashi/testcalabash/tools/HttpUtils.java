@@ -1,9 +1,11 @@
 package com.tashi.testcalabash.tools;
 
-import android.net.Network;
 import android.os.Handler;
+import android.widget.Toast;
 
-import java.io.BufferedReader;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -11,24 +13,32 @@ import java.io.OutputStream;
 import java.net.ProtocolException;
 import java.net.URL;
 
-
 import javax.net.ssl.HttpsURLConnection;
 
 /**
  * Created by SmartTashi on 2018/3/1.
  * 开启网络请求Post与Get
+ *
+ * 400——该手机号已注册
+ * {"code": "401001", "data": {}}——用户名或密码错误，请重新输入
+ * {"code": "200001", "data": {}}——昵称可用
+ * {"code": "400005", "data": {}}——昵称已使用
+ * {"code": "204001", "data": {}}——成功发送验证码
+ * {"code": "201001", "data": {"username": "", "token": "22SASQ/hq00MQuhmpNuaFFYrFHR1zgk8", "uid": "6370819597679988737", "avatar": "https://smedia.huluzc.com/images/avatar/dinosaur.png"}}
+ * ——成功注册
+ *
  */
 public class HttpUtils {
-    private HttpsURLConnection connection = null;
-    private BufferedReader mReader = null;
 
-    public void GetVerif(final String parameter, final String api, final Callback callback) {
-        if(!Network)
+   private static HttpsURLConnection connection = null;
+    public static void sentHttpRequest(final String parameter, final String api, final Callback callback) {
         final Handler handler = new Handler();
+
         new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
+
                     //"https://www.huluzc.com/calabash/code/phone?"+"&phone="+pa+"&category=0"
                     URL url = new URL(api);
                     connection = (HttpsURLConnection) url.openConnection();
@@ -48,39 +58,54 @@ public class HttpUtils {
                         out.write(parameter.getBytes());
                         out.close();
                     }
-                    if (connection.getResponseCode() == 200001 ||connection.getResponseCode()==204001) {
+                    if (connection.getResponseCode() == 200001 ) {
                         final byte[] temp = ReadStream(connection.getInputStream());
                         handler.post(new Runnable() {
                             @Override
                             public void run() {
-                                callback.Success(new Response(temp));
+                                try {
+                                    callback.onSuccess(new Response(temp));
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
                                 //使用回调，返回请求得到的数据
                             }
                         });
-                        //缓存图片资源
-                    }else {
+                        //TODO:缓存图片资源
+                    }else if(connection.getResponseCode()==204){
                         handler.post(new Runnable() {
                             @Override
                             public void run() {
-                                callback.Filed(new Exception("加载失败"));
+                                Toast.makeText(MyApplication.getThisContext(),"验证码已发送，请注意查收",Toast.LENGTH_LONG).show();
                             }
                         });
                     }
-
-
-                    //TODO
-                } catch (ProtocolException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } finally {
-                    if (mReader != null) {
-                        try {
-                            mReader.close();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
+                    else {
+                        handler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                callback.onFiled(new Exception("加载失败"));
+                            }
+                        });
                     }
+                    //TODO
+                } catch (final ProtocolException e) {
+                    handler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            callback.onFiled(e);
+                        }
+                    });
+                }
+                catch (final IOException e) {
+                    e.printStackTrace();
+                    handler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            callback.onFiled(e);
+                        }
+                    });
+                } finally {
                     if (connection != null) {
                         connection.disconnect();
                     }
@@ -113,19 +138,46 @@ public class HttpUtils {
     }
 
     public interface Callback{
-        void Success(Response response);
+        void onSuccess(Response response);
 
-        void Filed (Exception e);
+        void onFiled(Exception e);
     }
-    class Response{
-        private int mCode;
-        private String mInfo;
-        private byte[] mDate;
-        Response(byte[] response){
-            String stringDate = new String(response);
+  public static class Response{
+        private static String mState;
+        private static String mDate;
+        Response(byte[] response) throws JSONException {
+            String rawDate = new String(response);
+            mState = new JSONObject(rawDate).getString("code");
+            mDate = new JSONObject(rawDate).getString("date");
+        }
 
+        public static String getElements(String date,String name){
+            try {
+                return new JSONObject(date).getString(name);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            return null;
         }
+
+        public static boolean isSuccessSent(){
+            return mState.equals("204");
         }
+
+        public static boolean isUsable(){
+            return mState.equals("200");
+        }
+
+        public String getState() {
+            return mState;
+        }
+        public String getStringDate(){
+            return mDate;
+      }
+        public byte[] getByteDate(){
+            return mDate.getBytes();
+      }
+    }
 }
 
 
