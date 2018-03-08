@@ -2,7 +2,6 @@ package com.tashi.testcalabash.activity;
 
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -23,17 +22,20 @@ import java.util.HashMap;
 *
 * Created by SmartTashi .
 *2018/2/24:
-* //TODO 优化：使用fragment适配大屏幕
-* //TODO 以可滑动的TabLayout代替横向的ListView
+
 * */
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
-    FindFragment mFindFragment = new FindFragment();
-    PersonalFragment mPersonalFragment = new PersonalFragment();
-    RecommendFragment mRecommendFragment = new RecommendFragment();
-    ThemeFragment mThemeFragment = new ThemeFragment();
-    HashMap<String, Integer> mIcon;
-    private static Handler sHandler = new Handler();
+    public FindFragment mFindFragment = new FindFragment();
+    public PersonalFragment mPersonalFragment = new PersonalFragment();
+    public RecommendFragment mRecommendFragment = new RecommendFragment();
+    public ThemeFragment mThemeFragment = new ThemeFragment();
+    public HashMap<String, Integer> mIcon;
+    public RelativeLayout theme;
+    public ImageView theme1;
+    public RelativeLayout recommend;
+    public RelativeLayout find;
+    public RelativeLayout personal;
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)  //自动修复提示补上的
     @Override
@@ -41,18 +43,22 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         Log.d("MainActivity", "onCreate");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        findViews();
         initIcon();
-        ImageView theme1 = findViewById(R.id.q);
         theme1.setImageDrawable(getResources().getDrawable(mIcon.get("0")));
-        RelativeLayout theme = findViewById(R.id.theme_item);
         theme.setOnClickListener(this);
-        RelativeLayout recommend = findViewById(R.id.recommend_item);
         recommend.setOnClickListener(this);
-        RelativeLayout find = findViewById(R.id.find_item);
         find.setOnClickListener(this);
-        RelativeLayout personal = findViewById(R.id.personal_item);
         personal.setOnClickListener(this);
         replaceFragment(mThemeFragment);
+    }
+
+    public void findViews() {
+        theme = findViewById(R.id.theme_item);
+        theme1 = findViewById(R.id.q);
+        recommend = findViewById(R.id.recommend_item);
+        find = findViewById(R.id.find_item);
+        personal = findViewById(R.id.personal_item);
     }
 
     private void replaceFragment(Fragment fragment) {
@@ -64,7 +70,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        //TODO:换种方式更换Icon...分散到Fragment中在Fragment创建时更新图标    //使用Thread更换？
+
         ImageView theme = findViewById(R.id.q);
         ImageView find = findViewById(R.id.as);
         ImageView recommend = findViewById(R.id.e);
@@ -102,7 +108,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     }
 
     void initIcon() {
-
         this.mIcon = new HashMap<>();
         mIcon.put("0", R.mipmap.theme_sel);
         mIcon.put("1", R.mipmap.theme_unsel);

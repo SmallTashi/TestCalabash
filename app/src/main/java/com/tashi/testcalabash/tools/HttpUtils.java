@@ -132,7 +132,7 @@ public class HttpUtils {
     }
 
     public interface Callback{
-        void onSuccess(Response response);
+        void onSuccess(Response response) throws JSONException;
 
         void onFiled(Exception e);
     }

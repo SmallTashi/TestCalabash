@@ -3,6 +3,8 @@ package com.tashi.testcalabash.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.DialogFragment;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -65,7 +67,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
 
     }
     public void findViews(){
-
         this.password = findViewById(R.id.edit_password);
         this.phoneNumber = findViewById(R.id.edit_phonenum);
         this.register = findViewById(R.id.register_text);
@@ -86,8 +87,15 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
                 finish();
                 break;
             case R.id.login:
-                //TODO 开启网络请求，核对用户身份信息并保持登陆状态
-                checkLoginMessage(phone,pwd);
+                if(BaseActivity.isPhoneLegal(phone)){
+                    checkLoginMessage(phone,pwd);
+                }else {
+                  Toast toast = new Toast(this);
+                  toast.setGravity(Gravity.CENTER,0,0);
+                  toast.setText("嘤嘤嘤，手机号似乎不正确哎,请小主重新输入");
+                  toast.setDuration(Toast.LENGTH_LONG);
+                  toast.show();
+                }
                 break;
             case R.id.other_way:
                 Toast.makeText(this,"别点我，别点我，别点我，别点我，别点我，别点我",Toast.LENGTH_SHORT).show();

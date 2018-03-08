@@ -1,6 +1,7 @@
 package com.tashi.testcalabash.Fragment;
 
 import android.app.Activity;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -33,7 +34,16 @@ public class PersonalFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         this.mActivity = this.getActivity();
         findViews();
+    }
 
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        Bundle bundle = getArguments();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
+            bundle.getBinder("newUser");
+        }
+        //TODO RecyclerView的Adapter
     }
 
     public void findViews(){
