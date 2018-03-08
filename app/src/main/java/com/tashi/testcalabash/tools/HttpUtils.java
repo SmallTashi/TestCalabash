@@ -58,7 +58,7 @@ public class HttpUtils {
                         out.write(parameter.getBytes());
                         out.close();
                     }
-                    if (connection.getResponseCode() == 200001 ) {
+                    if (connection.getResponseCode() != 404 ) {
                         final byte[] temp = ReadStream(connection.getInputStream());
                         handler.post(new Runnable() {
                             @Override
@@ -67,24 +67,18 @@ public class HttpUtils {
                                     callback.onSuccess(new Response(temp));
                                 } catch (JSONException e) {
                                     e.printStackTrace();
+                                    callback.onFiled(e);
                                 }
                                 //使用回调，返回请求得到的数据
                             }
                         });
                         //TODO:缓存图片资源
-                    }else if(connection.getResponseCode()==204){
-                        handler.post(new Runnable() {
-                            @Override
-                            public void run() {
-                                Toast.makeText(MyApplication.getThisContext(),"验证码已发送，请注意查收",Toast.LENGTH_LONG).show();
-                            }
-                        });
                     }
                     else {
                         handler.post(new Runnable() {
                             @Override
                             public void run() {
-                                callback.onFiled(new Exception("加载失败"));
+                                callback.onFiled(new Exception("网络连接失败"));
                             }
                         });
                     }
@@ -150,31 +144,30 @@ public class HttpUtils {
             mState = new JSONObject(rawDate).getString("code");
             mDate = new JSONObject(rawDate).getString("date");
         }
-
-        public static String getElements(String date,String name){
+        static String getElements( String name){
             try {
-                return new JSONObject(date).getString(name);
+                return new JSONObject(mDate).getString(name);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
             return null;
         }
 
-        public static boolean isSuccessSent(){
+        public  boolean isSuccessSent(){
             return mState.equals("204");
         }
 
-        public static boolean isUsable(){
+        public  boolean isUsable(){
             return mState.equals("200");
         }
 
-        public String getState() {
+        public  String getState() {
             return mState;
         }
-        public String getStringDate(){
+        public  String getStringDate(){
             return mDate;
       }
-        public byte[] getByteDate(){
+        public  byte[] getByteDate(){
             return mDate.getBytes();
       }
     }

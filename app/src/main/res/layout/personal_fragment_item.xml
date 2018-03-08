@@ -21,7 +21,9 @@
             android:layout_marginStart="10dp"
             android:layout_marginLeft="10dp"
             >
+
             <ImageView
+                android:id="@+id/avator"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:src="@mipmap/ic_head"
@@ -44,12 +46,14 @@
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
+
                 <TextView
-                    android:layout_gravity="center"
-                    tools:text="user_name"
-                    android:textSize="20sp"
+                    android:id="@+id/username"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textSize="20sp"
+                    tools:text="user_name" />
                 <!--<ImageView-->
                     <!--android:layout_width="wrap_content"-->
                     <!--android:layout_height="wrap_content"-->
@@ -79,17 +83,19 @@
                 android:layout_height="wrap_content"
                 android:text="@string/_1_10"
                 android:layout_marginStart="3dp" />
+
             <TextView
-                android:padding="2dp"
-                android:background="@drawable/user_head_bg"
-                android:layout_gravity="center"
-                android:layout_marginLeft="3dp"
+                android:id="@+id/rank"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="13sp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="3dp"
+                android:layout_marginStart="3dp"
+                android:background="@drawable/user_head_bg"
+                android:padding="2dp"
                 android:textColor="@color/Whilt"
-                tools:text="LV.1"
-                android:layout_marginStart="3dp" />
+                android:textSize="13sp"
+                tools:text="LV.1" />
 
         </LinearLayout>
             <LinearLayout
@@ -134,15 +140,16 @@
                     android:text="@string/followed"
                     android:textSize="14sp"
                     android:layout_marginLeft="8dp" />
+
                 <TextView
-                    android:textSize="14sp"
-                    android:layout_gravity="center"
                     android:id="@+id/followed_num"
-                    android:layout_marginLeft="8dp"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    tools:text="数量"
-                    android:layout_marginStart="8dp" />
+                    android:layout_height="23dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginStart="8dp"
+                    android:textSize="14sp"
+                    tools:text="数量" />
 
             </LinearLayout>
 
