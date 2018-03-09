@@ -7,7 +7,7 @@ package com.tashi.testcalabash.tools;
 
 public class Api {
     public static final String BH_LOGIN = "http://bihu.jay86.com/login.php";
-
+    public static final String BH_REGISTER ="http://bihu.jay86.com/register.php";
     public static final String CHANG_HEAD_SHOT="http://bihu.jay86.com/modifyAvatar.php";
     //@param :page&page_per
     public static final String ATTICAL_LIST_head = "https://www.huluzc.com/calabash/article/nominate?"; //200001
@@ -28,7 +28,7 @@ public class Api {
     public static final String RESET_step1H = "https://www.huluzc.com/calabash/code/username?&username=";
     public static final String RESET_step1F = "&category=0";
     public static final String REGISTER = "https://www.huluzc.com/calabash/user-v2";
-    public static final String BH_REGISTER ="http://bihu.jay86.com/register.php";
+
     public static final String All_article = "https://www.huluzc.com/calabash/article?page=1&page_per=40&order_by=[\"praise_num\",\"published_time\"]&condition={\"tags\":[]}";
 
     //post_new_password param:username&password&password&verification

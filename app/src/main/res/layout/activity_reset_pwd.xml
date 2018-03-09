@@ -64,10 +64,11 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:inputType="phone"
+            android:inputType="text"
             android:background="@null"
             android:hint="@string/user_name_log"
             android:singleLine="true"
+            android:textColor="#000000"
             android:textColorHint="@color/register_hint"
             android:textSize="14sp" />
 
@@ -79,15 +80,16 @@
             android:layout_weight="1"
             android:background="@null"
             android:hint="@string/new_pwd"
-            android:inputType="textPassword"
+            android:inputType="text"
             android:singleLine="true"
+            android:textColor="#000000"
             android:textColorHint="@color/register_hint"
             android:textSize="14sp" />
 
     </LinearLayout>
 
     <Button
-        android:id="@+id/button_reset"
+        android:id="@+id/easy_regist"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/linear_layout_set"

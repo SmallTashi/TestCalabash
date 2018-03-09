@@ -1,15 +1,8 @@
 package com.tashi.testcalabash.activity;
 
-import android.Manifest;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -24,9 +17,7 @@ import com.tashi.testcalabash.Fragment.PersonalFragment;
 import com.tashi.testcalabash.R;
 import com.tashi.testcalabash.tools.Api;
 import com.tashi.testcalabash.tools.HttpUtils;
-import com.tashi.testcalabash.tools.JSONmanager;
 import com.tashi.testcalabash.tools.PackParameter;
-
 
 import org.json.JSONException;
 
@@ -46,65 +37,48 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     public Button login;
     public ImageView logo;
     public ImageView line;
-    public static String username = "";
-    public static String pwd = "";
     public static int mState;
-    private int INTERNET_REQUEST_CODE = 0;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_activity);
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-            //没有 CALL_PHONE 权限
-            if(ActivityCompat.shouldShowRequestPermissionRationale(this,Manifest.permission.CALL_PHONE)){
-                new AlertDialog.Builder(this)
-                        .setTitle("申请网络权限")
-                        .setMessage("是否同意联网请求，以获得精彩内容")
-                        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                ActivityCompat.requestPermissions(LoginActivity.this,new String[]{Manifest.permission.INTERNET},INTERNET_REQUEST_CODE);
-                            }
-                        }).show();
-            }else{
-                ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.INTERNET},INTERNET_REQUEST_CODE);
-
-            }
-
-        } else {
-            //TODO
-        }
         findViews();
-        username = Username.getText().toString();
-        pwd = password.getText().toString();
+        line.setOnClickListener(this);
+        easyRegister.setOnClickListener(this);
+        logo.setOnClickListener(this);
+        easyRegister.setClickable(true);
+        register.setClickable(true);
+        login.setOnClickListener(this);
+        otherWay.setOnClickListener(this);
+        register.setOnClickListener(this);
     }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        switch (requestCode){
-            case 1:
-
-        }
-    }
-
-    public void checkLoginMessage(String name, String pwd) {
-        HttpUtils.sentHttpRequest(PackParameter.Login(name, pwd),Api.BH_LOGIN, new HttpUtils.Callback() {
+    public void checkLoginMessage(final String name, String pwd) {
+        HttpUtils.sentHttpRequest(PackParameter.PassRegister(name, pwd),Api.BH_LOGIN, new HttpUtils.Callback() {
             @Override
             public void onSuccess(HttpUtils.Response response) throws JSONException {
                 mState = response.getState();
-                if (mState == 200) {
-                    User user = JSONmanager.getUser(response.getDate());
+                String s = "0";
+                User user;
+                if(response.emptyData(s)){
+                    addToast(response.getInfo(),false);
+                }
+                else if(response.getState() !=200){
+                    addToast("未知错误...",false);
+                }else if(response.getState() != 200&&response.getInfo()!=null){
+                    addToast("哎呀糟糕，登录失败了"+response.getInfo()+"，请小主重新输入...",false);
+                }
+                else {
+                    user = response.getuser(response.getDate());
                     Bundle bundle = new Bundle();
-                    bundle.putParcelable("user", user);
-                    PersonalFragment fragment = new PersonalFragment();
-                    fragment.setArguments(bundle);
-                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    bundle.putParcelable("user",user);
+                    PersonalFragment personalFragment = new PersonalFragment();
+                    personalFragment.setArguments(bundle);
+                    Intent intent = new Intent(LoginActivity.this,MainActivity.class);
                     startActivity(intent);
                     finish();
-                }else {
-                    addToast("哎呀糟糕，登录失败了，请小主检查用户名或密码是否输入正确...",false);
                 }
             }
             @Override
@@ -114,8 +88,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
             }
         });
     }
-
-
     public void findViews() {
         this.line = findViewById(R.id.line);
         this.login = findViewById(R.id.login);
@@ -125,14 +97,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         this.easyRegister = findViewById(R.id.forget_password);
         this.otherWay = findViewById(R.id.other_way);
         this.logo = findViewById(R.id.logo);
-        register.setClickable(true);
-        easyRegister.setClickable(true);
-        login.setOnClickListener(this);
-        otherWay.setOnClickListener(this);
-        register.setOnClickListener(this);
-        line.setOnClickListener(this);
-        easyRegister.setOnClickListener(this);
-        logo.setOnClickListener(this);
+
     }
     public void addToast(String s, boolean Short){
         if(Short){
@@ -152,12 +117,15 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
             startActivity(intent);
             finish();
         }
-
         else if (v == easyRegister) {
             Intent reset = new Intent(LoginActivity.this, P_registerActivity.class);
             startActivity(reset);
             finish();
         } else if (v == login) {
+            String username;
+            String pwd;
+            username = Username.getText().toString();
+            pwd = password.getText().toString();
             if (BaseActivity.isNameLegal(username)&&BaseActivity.isPasswordLegal(pwd)) {
                 checkLoginMessage(username, pwd);
             }

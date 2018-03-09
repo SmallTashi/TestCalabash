@@ -59,21 +59,22 @@
 
         <EditText
             android:id="@+id/register_ac_1"
+            android:padding="1dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:inputType="text"
+            android:inputType="phone"
             android:background="@null"
             android:hint="@string/register_phone_number"
             android:singleLine="true"
             android:textColorHint="@color/register_hint"
-            android:textCursorDrawable="@drawable/line_decoration"
             android:textSize="14sp" />
 
         <EditText
             android:id="@+id/register_ac_0"
-            android:inputType="textPassword"
+            android:inputType="text"
+            android:padding="1dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -82,7 +83,6 @@
             android:hint="@string/user_name_log"
             android:singleLine="true"
             android:textColorHint="@color/register_hint"
-            android:textCursorDrawable="@drawable/line_decoration"
             android:textSize="14sp" />
 
         <EditText
@@ -91,15 +91,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:padding="1dp"
             android:layout_weight="1"
             android:background="@null"
             android:hint="@string/password"
             android:singleLine="true"
             android:textColorHint="@color/register_hint"
-            android:textCursorDrawable="@drawable/line_decoration"
             android:textSize="14sp" />
 
         <LinearLayout
+            android:padding="1dp"
             android:id="@+id/v_linear_layout"
             android:layout_width="match_parent"
             android:layout_height="0dp"

@@ -6,7 +6,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -61,10 +60,6 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         back.setOnClickListener(this);
         back.setClickable(true);
         pass.setOnClickListener(this);
-        this.name = username.getText().toString();
-        this.pwd = password.getText().toString();
-        this.phone = phoneNumber.getText().toString();
-        this.verif = verification.getText().toString();
     }
     public void findViews() {
         this.username = findViewById(R.id.register_ac_0);
@@ -84,13 +79,18 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
             startActivity(back);
             finish();
         } else if (v == get) {
-            if (BaseActivity.isPhoneNumberLegal(name)) {
+            this.name = username.getText().toString();
+            this.pwd = password.getText().toString();
+            this.phone = phoneNumber.getText().toString();
+            this.verif = verification.getText().toString();
+            if (name != null) {
                 String p = null;
                 String param = Api.VERIFICATION_head + name + Api.VERIFICATION_foot;
                 HttpUtils.sentHttpsRequest(p, param, new HttpUtils.Callback() {
                     @Override
                     public void onSuccess(HttpUtils.Response response) {
-                        if (response.getState()==204001) {
+                        String s = "0";
+                        if (response.emptyData(s)) {
                             addToast("验证码已发送，请小主注意查收...",true);
                         }
                     }
@@ -101,20 +101,22 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                 });
             } else {addToast("小主您的手机号码不符合规定哟...",false);
             }
-        } else if (next == v) {
-            if(verif == null){
-                Toast.makeText(MyApplication.getThisContext(),"请小主输入验证码...",Toast.LENGTH_LONG).show();
-            }else if(pass==v){
-                Intent intent = new Intent(this,P_registerActivity.class);
+        }
+        else if (next == v) {
+            if (verif == null) {
+                Toast.makeText(MyApplication.getThisContext(), "请小主输入验证码...", Toast.LENGTH_LONG).show();
+            } else if (pass == v) {
+                Intent intent = new Intent(this, P_registerActivity.class);
                 startActivity(intent);
                 finish();
             }
+        }
             else {
-                HttpUtils.sentHttpRequest(PackParameter.Register(name,pwd, verif), Api.BH_REGISTER, new HttpUtils.Callback() {
+                HttpUtils.sentHttpRequest(PackParameter.BHRegisterLogin(name,pwd, verif), Api.BH_REGISTER, new HttpUtils.Callback() {
                     @Override
                     public void onSuccess(HttpUtils.Response response) throws JSONException {
-                        if(response.getState()==200){
-                            User user = JSONmanager.newUser((response.getDate()));
+                            User user = response.getNewuser(response.getDate());
+                            user.setPassword(pwd);
                             Bundle args = new Bundle();
                             args.putParcelable("newUser",user);
                             PersonalFragment mine = new PersonalFragment();
@@ -122,7 +124,6 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                             Intent intent = new Intent(RegisterActivity.this,MainActivity.class);
                             startActivity(intent);
                             finish();
-                        }
                     }
                     @Override
                     public void onFiled(Exception e) {
@@ -131,7 +132,6 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                 });
             }
         }
-    }
     public void addToast(String s, boolean Short){
         if(Short){
             Toast.makeText(this,s,Toast.LENGTH_SHORT).show();

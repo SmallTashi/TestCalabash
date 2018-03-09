@@ -1,6 +1,9 @@
 package com.tashi.testcalabash.tools;
 
 import android.os.Handler;
+import android.util.Log;
+
+import com.tashi.testcalabash.Date.User;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -144,12 +147,28 @@ public class HttpUtils {
         private String Info;
         private String Date = null;
 
-        Response(byte[] response) throws JSONException {
+        Response(byte[] response)  {
             String rawDate = new String(response);
-            JSONObject object = new JSONObject(rawDate);
+            Log.v("register",rawDate);
+            try {
+                JSONObject object = new JSONObject(rawDate);
             State = object.getInt("status");
             Info = object.getString("info");
-            Date = new JSONObject(rawDate).getString("data");
+            Date = object.getString("data");
+            }catch (JSONException e){
+                e.printStackTrace();
+                Date = null;
+            }
+        }
+      public boolean emptyData(String s){
+            s=Date;
+            return (s==null);
+        }
+        public User getuser(String date) throws JSONException {
+            return JSONmanager.getUser(date);
+        }
+        public User getNewuser(String date) throws JSONException {
+            return JSONmanager.newUser(date);
         }
 
         public String getInfo() {
@@ -168,6 +187,7 @@ public class HttpUtils {
 
     private static HttpsURLConnection connections = null;
 
+    //TODO 修复发送验证码网络请求这里的逻辑
     public static void sentHttpsRequest(final String parameter, final String api, final Callback callback) {
         final Handler handler = new Handler();
         new Thread(new Runnable() {
@@ -187,12 +207,13 @@ public class HttpUtils {
                         connections.setDoInput(true);
                         connections.setDoOutput(true);
                         connections.setUseCaches(false);
-                        connections.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+                        connection.setRequestProperty("Content-Type", "application/json;charset=UTF-8");
+                        connection.setRequestProperty("Content-Length",String.valueOf(parameter.length()));
                         OutputStream out = connections.getOutputStream();
                         out.write(parameter.getBytes());
                         out.close();
                     }
-                    if (connections.getResponseCode() == 200) {
+                    if (connections.getResponseCode() != 400) {
                         final byte[] temp = ReadStream(connections.getInputStream());
                         handler.post(new Runnable() {
                             @Override

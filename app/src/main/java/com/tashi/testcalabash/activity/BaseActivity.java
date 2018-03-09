@@ -5,6 +5,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
 import android.view.inputmethod.InputMethodManager;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  * Created by SmartTahi on 2018/2/23.
  * 点击空白部分收起软键盘
@@ -29,18 +32,4 @@ public class BaseActivity extends AppCompatActivity {
         return str.length() > 6 || str.length() < 18;
     }
 
-    public static boolean isPhoneNumberLegal(String str) {
-        char[] number;
-        boolean i = false;
-        number = str.toCharArray();
-        char[] check = new char[]{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-        if (number.length == check.length) {
-            if (number[0] == 1) {
-                i = true;
-            }
-        } else {
-            i =  false;
-        }
-        return i;
-    }
 }

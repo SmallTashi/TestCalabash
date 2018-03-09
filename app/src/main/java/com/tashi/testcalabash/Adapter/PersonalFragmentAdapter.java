@@ -2,6 +2,7 @@ package com.tashi.testcalabash.Adapter;
 
 import android.support.design.widget.TabLayout;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -33,23 +34,27 @@ public class PersonalFragmentAdapter extends RecyclerView.Adapter {
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         switch (viewType){
             case MINE_HEAD:
-                break;
+                View top = LayoutInflater.from(parent.getContext()).inflate(R.layout.personal_fragment_item,parent,false);
+                return new MineTopHolder(top);
             case MINE_SUBSCRIBE:
-                //TODO
-                break;
+                View sub = LayoutInflater.from(parent.getContext()).inflate(R.layout.mine_subscribe_item,parent,false);
+                return new MineMidHolder(sub);
             case MINE_BOOK:
-                //TODO
-                break;
+                View book = LayoutInflater.from(parent.getContext()).inflate(R.layout.personal_fragment_item,parent,false);
+                return new MineMidHolder(book);
             case MINE_OTHERS:
-                //TODO
-                break;
+                View others = LayoutInflater.from(parent.getContext()).inflate(R.layout.personal_fragment_item,parent,false);
+                return new MineOtherHolder(others);
         }
-
         return null;
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+        if (holder instanceof MineTopHolder){
+            MineTopHolder topHolder = (MineTopHolder)holder;
+
+        }
     }
 
     @Override
@@ -67,11 +72,11 @@ public class PersonalFragmentAdapter extends RecyclerView.Adapter {
 }
 
 class MineTopHolder extends RecyclerView.ViewHolder {
-private ImageView headShot;
-private Text name;
-private Text rank;
-private Text folling_count;
-private Text follwed_count;
+ ImageView headShot;
+ Text name;
+ Text rank;
+ Text folling_count;
+ Text follwed_count;
     public MineTopHolder(View itemView) {
         super(itemView);
         headShot = (ImageView) itemView.findViewById(R.id.avator);

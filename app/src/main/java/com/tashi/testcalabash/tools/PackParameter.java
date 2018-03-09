@@ -28,7 +28,7 @@ public class PackParameter {
     public static String TellNickName(String nick_name){
         return "https://www.huluzc.com/calabash/user/username?&username="+nick_name;
     }
-    public static String Register(String username,String pwd,String verification){
+    public static String BHRegisterLogin(String username, String pwd, String verification){
         return "username="+username+"&password="+pwd;
     }
     public static String PassRegister(String username,String pwd){

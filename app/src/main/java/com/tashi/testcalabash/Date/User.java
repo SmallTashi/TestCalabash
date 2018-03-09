@@ -61,7 +61,6 @@ public class User implements Parcelable{
         dest.writeString(token);
     }
 
-
     public String getToken() {
         return token;
     }

@@ -25,7 +25,6 @@ public class JSONmanager {
         try {
             user.setAvatar(object.getString("avatar"));
             user.setToken(object.getString("token"));
-            user.setPassword(object.getString("password"));
                 user.setUsername(object.getString("username"));
                 user.setId(object.getInt("uid"));
             }catch (JSONException e){
