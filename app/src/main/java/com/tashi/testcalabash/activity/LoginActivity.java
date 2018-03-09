@@ -17,6 +17,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.tashi.testcalabash.Date.User;
 import com.tashi.testcalabash.Fragment.PersonalFragment;
@@ -25,7 +26,7 @@ import com.tashi.testcalabash.tools.Api;
 import com.tashi.testcalabash.tools.HttpUtils;
 import com.tashi.testcalabash.tools.JSONmanager;
 import com.tashi.testcalabash.tools.PackParameter;
-import com.tashi.testcalabash.tools.ShowToast;
+
 
 import org.json.JSONException;
 
@@ -44,6 +45,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     public TextView register;
     public Button login;
     public ImageView logo;
+    public ImageView line;
     public static String username = "";
     public static String pwd = "";
     public static int mState;
@@ -71,11 +73,11 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
             }
 
         } else {
-            findViews();
-            username = Username.getText().toString();
-            pwd = password.getText().toString();
+            //TODO
         }
-
+        findViews();
+        username = Username.getText().toString();
+        pwd = password.getText().toString();
     }
 
     @Override
@@ -102,18 +104,20 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                     startActivity(intent);
                     finish();
                 }else {
-                    ShowToast.addToast("哎呀糟糕，登录失败了，请小主检查用户名或密码是否输入正确...",false);
+                    addToast("哎呀糟糕，登录失败了，请小主检查用户名或密码是否输入正确...",false);
                 }
             }
             @Override
             public void onFiled(Exception e) {
-                ShowToast.addToast(e.toString(),true);
+                addToast(e.toString(),true);
                 Log.w("tag",e);
             }
         });
     }
 
+
     public void findViews() {
+        this.line = findViewById(R.id.line);
         this.login = findViewById(R.id.login);
         this.password = findViewById(R.id.edit_password);
         this.Username = findViewById(R.id.edit_user_name_login);
@@ -126,17 +130,30 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         login.setOnClickListener(this);
         otherWay.setOnClickListener(this);
         register.setOnClickListener(this);
+        line.setOnClickListener(this);
         easyRegister.setOnClickListener(this);
         logo.setOnClickListener(this);
     }
-
+    public void addToast(String s, boolean Short){
+        if(Short){
+            Toast.makeText(this,s,Toast.LENGTH_SHORT).show();
+        }else {
+            Toast.makeText(this,s,Toast.LENGTH_LONG).show();
+        }
+    }
     @Override
     public void onClick(View v) {
         if (v == register) {
             Intent register = new Intent(LoginActivity.this, RegisterActivity.class);
             startActivity(register);
             finish();
-        } else if (v == easyRegister) {
+        }else if (line==v){
+            Intent intent = new Intent(this,MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
+
+        else if (v == easyRegister) {
             Intent reset = new Intent(LoginActivity.this, P_registerActivity.class);
             startActivity(reset);
             finish();
@@ -145,13 +162,13 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                 checkLoginMessage(username, pwd);
             }
             else {
-                ShowToast.addToast("嘤嘤嘤,输入错误,请小主重新输入",false);
+                addToast("嘤嘤嘤,输入错误,请小主重新输入",false);
             }
         } else if (v == otherWay) {
-            ShowToast.addToast("别点我，别点我，别点我,别点我，别点我，别点我，别点我，别点我，别点我",true);
+            addToast("别点我，别点我，别点我,别点我，别点我，别点我，别点我，别点我，别点我",true);
         }
         else{
-            ShowToast.addToast("瞎点啥呐，讨厌...",true);
+            addToast("瞎点啥呐，讨厌...",true);
         }
     }
 }

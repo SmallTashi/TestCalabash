@@ -43,13 +43,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         Log.d("MainActivity", "onCreate");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        findViews();
         initIcon();
+        findViews();
         theme1.setImageDrawable(getResources().getDrawable(mIcon.get("0")));
-        theme.setOnClickListener(this);
-        recommend.setOnClickListener(this);
-        find.setOnClickListener(this);
-        personal.setOnClickListener(this);
         replaceFragment(mThemeFragment);
     }
 
@@ -59,6 +55,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         recommend = findViewById(R.id.recommend_item);
         find = findViewById(R.id.find_item);
         personal = findViewById(R.id.personal_item);
+        theme.setOnClickListener(this);
+        recommend.setOnClickListener(this);
+        find.setOnClickListener(this);
+        personal.setOnClickListener(this);
     }
 
     private void replaceFragment(Fragment fragment) {

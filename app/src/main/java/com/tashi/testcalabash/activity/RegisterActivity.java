@@ -23,7 +23,7 @@ import com.tashi.testcalabash.tools.HttpUtils;
 import com.tashi.testcalabash.tools.JSONmanager;
 import com.tashi.testcalabash.tools.MyApplication;
 import com.tashi.testcalabash.tools.PackParameter;
-import com.tashi.testcalabash.tools.ShowToast;
+
 
 import org.json.JSONException;
 
@@ -91,16 +91,15 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                     @Override
                     public void onSuccess(HttpUtils.Response response) {
                         if (response.getState()==204001) {
-                            ShowToast.addToast("验证码已发送，请小主注意查收...",true);
+                            addToast("验证码已发送，请小主注意查收...",true);
                         }
                     }
                     @Override
                     public void onFiled(Exception e) {
-                        ShowToast.addToast(e.toString(),false);
+                        addToast(e.toString(),false);
                     }
                 });
-            } else {
-                ShowToast.addToast("小主您的手机号码不符合规定哟...",false);
+            } else {addToast("小主您的手机号码不符合规定哟...",false);
             }
         } else if (next == v) {
             if(verif == null){
@@ -127,10 +126,17 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                     }
                     @Override
                     public void onFiled(Exception e) {
-                        ShowToast.addToast(e.toString(),false);
+                        addToast(e.toString(),false);
                     }
                 });
             }
+        }
+    }
+    public void addToast(String s, boolean Short){
+        if(Short){
+            Toast.makeText(this,s,Toast.LENGTH_SHORT).show();
+        }else {
+            Toast.makeText(this,s,Toast.LENGTH_LONG).show();
         }
     }
 }
