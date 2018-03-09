@@ -27,7 +27,7 @@
         <activity
             android:name=".activity.LoginActivity"
             android:theme="@style/AppTheme.Full" />
-        <activity android:name=".activity.ResetPwdActivity"/>
+        <activity android:name=".activity.P_registerActivity"/>
     </application>
 
 </manifest>

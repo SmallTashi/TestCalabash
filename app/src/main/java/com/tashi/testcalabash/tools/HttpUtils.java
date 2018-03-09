@@ -1,7 +1,6 @@
 package com.tashi.testcalabash.tools;
 
 import android.os.Handler;
-import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -10,6 +9,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.HttpURLConnection;
 import java.net.ProtocolException;
 import java.net.URL;
 
@@ -18,7 +18,7 @@ import javax.net.ssl.HttpsURLConnection;
 /**
  * Created by SmartTashi on 2018/3/1.
  * 开启网络请求Post与Get
- *
+ * <p>
  * 400——该手机号已注册
  * {"code": "401001", "data": {}}——用户名或密码错误，请重新输入
  * {"code": "200001", "data": {}}——昵称可用
@@ -26,24 +26,22 @@ import javax.net.ssl.HttpsURLConnection;
  * {"code": "204001", "data": {}}——成功发送验证码
  * {"code": "201001", "data": {"username": "", "token": "22SASQ/hq00MQuhmpNuaFFYrFHR1zgk8", "uid": "6370819597679988737", "avatar": "https://smedia.huluzc.com/images/avatar/dinosaur.png"}}
  * ——成功注册
- *
  */
 public class HttpUtils {
 
-   private static HttpsURLConnection connection = null;
+    private static HttpURLConnection connection = null;
+
     public static void sentHttpRequest(final String parameter, final String api, final Callback callback) {
         final Handler handler = new Handler();
-
         new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
-
-                    //"https://www.huluzc.com/calabash/code/phone?"+"&phone="+pa+"&category=0"
+                    //"https://www.huluzc.com/calabash/code/phone?"+"&username="+pa+"&category=0"
                     URL url = new URL(api);
-                    connection = (HttpsURLConnection) url.openConnection();
-                    connection.setReadTimeout(10 * 1000);
-                    connection.setConnectTimeout(5 * 1000);
+                    connection = (HttpURLConnection) url.openConnection();
+                    connection.setReadTimeout(5 * 1000);
+                    connection.setConnectTimeout(10 * 1000);
                     if (parameter == null) {
                         connection.setRequestMethod("GET");
                         connection.connect();
@@ -52,13 +50,12 @@ public class HttpUtils {
                         connection.setDoInput(true);
                         connection.setDoOutput(true);
                         connection.setUseCaches(false);
-                        connection.setRequestProperty("Content-Type", "application/json;charset=UTF-8");
-                        connection.setRequestProperty("Content-Length", String.valueOf(parameter.length()));
+                        connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
                         OutputStream out = connection.getOutputStream();
                         out.write(parameter.getBytes());
                         out.close();
                     }
-                    if (connection.getResponseCode() != 404 ) {
+                    if (connection.getResponseCode() == 200) {
                         final byte[] temp = ReadStream(connection.getInputStream());
                         handler.post(new Runnable() {
                             @Override
@@ -72,9 +69,7 @@ public class HttpUtils {
                                 //使用回调，返回请求得到的数据
                             }
                         });
-                        //TODO:缓存图片资源
-                    }
-                    else {
+                    } else {
                         handler.post(new Runnable() {
                             @Override
                             public void run() {
@@ -82,7 +77,6 @@ public class HttpUtils {
                             }
                         });
                     }
-                    //TODO
                 } catch (final ProtocolException e) {
                     handler.post(new Runnable() {
                         @Override
@@ -90,8 +84,7 @@ public class HttpUtils {
                             callback.onFiled(e);
                         }
                     });
-                }
-                catch (final IOException e) {
+                } catch (final IOException e) {
                     e.printStackTrace();
                     handler.post(new Runnable() {
                         @Override
@@ -108,13 +101,22 @@ public class HttpUtils {
         }).start();
     }
 
-    public static final byte[] ReadStream(InputStream in) {
+    public static String getJSONOf(String date, String name) {
+        try {
+            return new JSONObject(date).getString(name);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    private static byte[] ReadStream(InputStream in) {
         //建立通道对象
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         //创建保存数据的字节数组
         byte[] temp = new byte[1024];
         //开始读取数据
-        int len ;
+        int len;
         try {
             if (in != null) {
                 while ((len = in.read(temp)) != -1) {
@@ -131,45 +133,109 @@ public class HttpUtils {
         return outputStream.toByteArray();
     }
 
-    public interface Callback{
+    public interface Callback {
         void onSuccess(Response response) throws JSONException;
 
         void onFiled(Exception e);
     }
-  public static class Response{
-        private static String mState;
-        private static String mDate;
+
+    public static class Response {
+        private int State;
+        private String Info;
+        private String Date = null;
+
         Response(byte[] response) throws JSONException {
             String rawDate = new String(response);
-            mState = new JSONObject(rawDate).getString("code");
-            mDate = new JSONObject(rawDate).getString("date");
+            JSONObject object = new JSONObject(rawDate);
+            State = object.getInt("status");
+            Info = object.getString("info");
+            Date = new JSONObject(rawDate).getString("data");
         }
-        static String getElements( String name){
-            try {
-                return new JSONObject(mDate).getString(name);
-            } catch (JSONException e) {
-                e.printStackTrace();
+
+        public String getInfo() {
+            return Info;
+        }
+
+        public String getDate() {
+            return Date;
+        }
+
+        public int getState() {
+            return State;
+        }
+    }
+
+
+    private static HttpsURLConnection connections = null;
+
+    public static void sentHttpsRequest(final String parameter, final String api, final Callback callback) {
+        final Handler handler = new Handler();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    //"https://www.huluzc.com/calabash/code/phone?"+"&username="+pa+"&category=0"
+                    URL url = new URL(api);
+                    connections = (HttpsURLConnection) url.openConnection();
+                    connections.setReadTimeout(5 * 1000);
+                    connections.setConnectTimeout(10 * 1000);
+                    if (parameter == null) {
+                        connections.setRequestMethod("GET");
+                        connections.connect();
+                    } else {
+                        connections.setRequestMethod("POST");
+                        connections.setDoInput(true);
+                        connections.setDoOutput(true);
+                        connections.setUseCaches(false);
+                        connections.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+                        OutputStream out = connections.getOutputStream();
+                        out.write(parameter.getBytes());
+                        out.close();
+                    }
+                    if (connections.getResponseCode() == 200) {
+                        final byte[] temp = ReadStream(connections.getInputStream());
+                        handler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                try {
+                                    callback.onSuccess(new Response(temp));
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                    callback.onFiled(e);
+                                }
+                                //使用回调，返回请求得到的数据
+                            }
+                        });
+                    } else {
+                        handler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                callback.onFiled(new Exception("网络连接失败"));
+                            }
+                        });
+                    }
+                } catch (final ProtocolException e) {
+                    handler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            callback.onFiled(e);
+                        }
+                    });
+                } catch (final IOException e) {
+                    e.printStackTrace();
+                    handler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            callback.onFiled(e);
+                        }
+                    });
+                } finally {
+                    if (connections != null) {
+                        connections.disconnect();
+                    }
+                }
             }
-            return null;
-        }
-
-        public  boolean isSuccessSent(){
-            return mState.equals("204");
-        }
-
-        public  boolean isUsable(){
-            return mState.equals("200");
-        }
-
-        public  String getState() {
-            return mState;
-        }
-        public  String getStringDate(){
-            return mDate;
-      }
-        public  byte[] getByteDate(){
-            return mDate.getBytes();
-      }
+        }).start();
     }
 }
 

@@ -15,14 +15,15 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.tashi.testcalabash.Date.Personal;
+import com.tashi.testcalabash.Date.User;
 import com.tashi.testcalabash.Fragment.PersonalFragment;
 import com.tashi.testcalabash.R;
 import com.tashi.testcalabash.tools.Api;
 import com.tashi.testcalabash.tools.HttpUtils;
 import com.tashi.testcalabash.tools.JSONmanager;
 import com.tashi.testcalabash.tools.MyApplication;
-import com.tashi.testcalabash.tools.Parameter;
+import com.tashi.testcalabash.tools.PackParameter;
+import com.tashi.testcalabash.tools.ShowToast;
 
 import org.json.JSONException;
 
@@ -34,12 +35,15 @@ import org.json.JSONException;
 public class RegisterActivity extends BaseActivity implements View.OnClickListener {
     private ImageView back;
     private EditText phoneNumber;
+    private EditText username;
     private EditText password;
     private EditText verification;
     private TextView get;
+    private TextView pass;
     private Button next;
-    private String phone;
+    private String name;
     private String pwd;
+    private String phone;
     private String verif;
 
 
@@ -51,15 +55,23 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         LinearLayout linearLayout1 = findViewById(R.id.linear_layout);
         linearLayout1.setShowDividers(LinearLayout.SHOW_DIVIDER_MIDDLE);
         findViews();
+        next.setOnClickListener(this);
+        get.setOnClickListener(this);
         back.setClickable(true);
-        this.phone = phoneNumber.getText().toString();
+        back.setOnClickListener(this);
+        back.setClickable(true);
+        pass.setOnClickListener(this);
+        this.name = username.getText().toString();
         this.pwd = password.getText().toString();
+        this.phone = phoneNumber.getText().toString();
         this.verif = verification.getText().toString();
     }
     public void findViews() {
+        this.username = findViewById(R.id.register_ac_0);
         this.password = findViewById(R.id.register_ac_2);
         this.phoneNumber = findViewById(R.id.register_ac_1);
         this.verification = findViewById(R.id.register_ac_3);
+        this.pass = findViewById(R.id.pass);
         this.get = findViewById(R.id.register_get);
         this.back = findViewById(R.id.back_register);
         this.next = findViewById(R.id.button_next);
@@ -72,51 +84,50 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
             startActivity(back);
             finish();
         } else if (v == get) {
-            if (BaseActivity.isPhoneLegal(phone)) {
+            if (BaseActivity.isPhoneNumberLegal(name)) {
                 String p = null;
-                String param = Api.VERIFICATION_head + phone + Api.VERIFICATION_foot;
-                HttpUtils.sentHttpRequest(p, param, new HttpUtils.Callback() {
+                String param = Api.VERIFICATION_head + name + Api.VERIFICATION_foot;
+                HttpUtils.sentHttpsRequest(p, param, new HttpUtils.Callback() {
                     @Override
                     public void onSuccess(HttpUtils.Response response) {
-                        if (response.getState().equals("204001")) {
-                            Toast.makeText(MyApplication.getThisContext(), "验证码已发送，请小主注意查收...", Toast.LENGTH_SHORT).show();
+                        if (response.getState()==204001) {
+                            ShowToast.addToast("验证码已发送，请小主注意查收...",true);
                         }
                     }
-
                     @Override
                     public void onFiled(Exception e) {
-                        Toast.makeText(MyApplication.getThisContext(), e.toString(), Toast.LENGTH_LONG).show();
+                        ShowToast.addToast(e.toString(),false);
                     }
                 });
             } else {
-                Toast toast = new Toast(MyApplication.getThisContext());
-                toast.setGravity(Gravity.CENTER, 0, 0);
-                toast.setText("小主您的手机号码不符合规定哟...");
-                toast.setDuration(Toast.LENGTH_LONG);
-                toast.show();
+                ShowToast.addToast("小主您的手机号码不符合规定哟...",false);
             }
         } else if (next == v) {
             if(verif == null){
                 Toast.makeText(MyApplication.getThisContext(),"请小主输入验证码...",Toast.LENGTH_LONG).show();
-            }else {
-
-                HttpUtils.sentHttpRequest(Parameter.Register(phone,pwd, verif), Api.REGISTER, new HttpUtils.Callback() {
+            }else if(pass==v){
+                Intent intent = new Intent(this,P_registerActivity.class);
+                startActivity(intent);
+                finish();
+            }
+            else {
+                HttpUtils.sentHttpRequest(PackParameter.Register(name,pwd, verif), Api.BH_REGISTER, new HttpUtils.Callback() {
                     @Override
                     public void onSuccess(HttpUtils.Response response) throws JSONException {
-                        if(response.getState().equals("201001")){
-                            Personal user = JSONmanager.newUser(response.getStringDate());
-                            user.setUsername("尼古拉斯"+verif+"世");
-                            user.setRank(0);
+                        if(response.getState()==200){
+                            User user = JSONmanager.newUser((response.getDate()));
                             Bundle args = new Bundle();
                             args.putParcelable("newUser",user);
                             PersonalFragment mine = new PersonalFragment();
                             mine.setArguments(args);
+                            Intent intent = new Intent(RegisterActivity.this,MainActivity.class);
+                            startActivity(intent);
+                            finish();
                         }
                     }
-
                     @Override
                     public void onFiled(Exception e) {
-
+                        ShowToast.addToast(e.toString(),false);
                     }
                 });
             }

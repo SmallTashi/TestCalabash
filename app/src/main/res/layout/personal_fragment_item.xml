@@ -21,7 +21,6 @@
             android:layout_marginStart="10dp"
             android:layout_marginLeft="10dp"
             >
-
             <ImageView
                 android:id="@+id/avator"
                 android:layout_width="match_parent"

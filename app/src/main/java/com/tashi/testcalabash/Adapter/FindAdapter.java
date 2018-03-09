@@ -1,6 +1,7 @@
 package com.tashi.testcalabash.Adapter;
 
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.view.ViewGroup;
 
 /**
@@ -8,7 +9,7 @@ import android.view.ViewGroup;
  * Theme
  */
 
-public class AdapterMain extends RecyclerView.Adapter {
+public class FindAdapter extends RecyclerView.Adapter {
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         return null;
@@ -22,5 +23,11 @@ public class AdapterMain extends RecyclerView.Adapter {
     @Override
     public int getItemCount() {
         return 0;
+    }
+}
+class FindAdapterViewHolder extends RecyclerView.ViewHolder {
+
+    public FindAdapterViewHolder(View itemView) {
+        super(itemView);
     }
 }

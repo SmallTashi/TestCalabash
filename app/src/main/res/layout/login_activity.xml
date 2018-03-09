@@ -10,7 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="88dp"
         android:src="@mipmap/logo_big"
         tools:ignore="ContentDescription" />
 
@@ -28,22 +28,22 @@
         tools:ignore="PrivateResource">
 
         <EditText
-            android:id="@+id/edit_phonenum"
+            android:id="@+id/edit_user_name_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="4dp"
             android:layout_marginTop="4dp"
             android:background="@null"
-            android:inputType="phone"
+            android:inputType="text"
             android:drawableLeft="@mipmap/signin_phone"
             android:drawablePadding="10dp"
             android:drawableStart="@mipmap/signin_phone"
-            android:hint="@string/phonenum"
+            android:hint="@string/user_name_log"
             android:padding="8sp"
             android:singleLine="true"
             android:textColor="@color/Whilt"
             android:textColorHint="@color/Whilt"
-            android:textSize="15sp" />
+            android:textSize="14sp" />
 
     </RelativeLayout>
 
@@ -66,9 +66,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="4dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="8dp"
             android:background="@null"
-            android:digits="123456789.@zxcvbnmlkjhfgdsaqwertyuiopQWERTYUIOPASDFGHJKLZXCVBNM"
             android:drawableLeft="@mipmap/signin_password"
             android:drawablePadding="10dp"
             android:drawableStart="@mipmap/signin_password"
@@ -78,7 +77,7 @@
             android:singleLine="true"
             android:textColor="@color/Whilt"
             android:textColorHint="@color/Whilt"
-            android:textSize="15sp" />
+            android:textSize="14sp" />
 
         <ImageView
             android:id="@+id/ss_password"
@@ -102,7 +101,7 @@
         android:layout_alignRight="@+id/logo"
         android:layout_below="@+id/relativeLayout5"
         android:layout_marginTop="12dp"
-        android:text="@string/forgot_password"
+        android:text="@string/easy_register"
         android:textColor="@color/Whilt"
         android:textSize="15sp" />
 
@@ -118,7 +117,7 @@
         android:layout_toRightOf="@+id/forget_password"
         android:text="@string/line"
         android:textColor="@color/Whilt"
-        android:textSize="15sp" />
+        android:textSize="16sp" />
 
     <TextView
         android:id="@+id/register_text"
@@ -134,29 +133,31 @@
         android:focusable="true"
         android:text="@string/register"
         android:textColor="#E9CF07"
-        android:textSize="15sp" />
+        android:textSize="14sp" />
 
     <RelativeLayout
         android:id="@+id/relativeLayout7"
         android:layout_width="match_parent"
+        android:background="@drawable/bg_login"
         android:layout_height="wrap_content"
         android:layout_below="@+id/relativeLayout5"
         android:layout_marginEnd="78dp"
         android:layout_marginLeft="78dp"
         android:layout_marginRight="78dp"
         android:layout_marginStart="78dp"
-        android:layout_marginTop="45dp"
+        android:layout_marginTop="48dp"
         android:alpha="0.8">
 
         <Button
             android:id="@+id/login"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:background="@color/login_button"
+            android:background="@null"
             android:text="@string/login"
             android:textColor="@color/Whilt"
-            android:textSize="15sp" />
+            android:textSize="14sp" />
     </RelativeLayout>
 
     <ImageView
@@ -165,7 +166,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/relativeLayout7"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="20dp"
         android:src="@drawable/abc_scrubber_track_mtrl_alpha"
         android:textColor="@color/Whilt"
         tools:ignore="ContentDescription,PrivateResource" />
@@ -176,7 +177,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/line"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="15dp"
         android:text="@string/tip"
         android:textColor="#FFFFFF" />
 
@@ -185,11 +186,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/tip"
-        android:layout_marginEnd="35dp"
-        android:layout_marginLeft="35dp"
-        android:layout_marginRight="35dp"
-        android:layout_marginStart="35dp"
-        android:layout_marginTop="23dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="28dp"
         android:clickable="true"
         android:focusable="true"
         android:orientation="horizontal"
