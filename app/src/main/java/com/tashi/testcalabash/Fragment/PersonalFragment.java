@@ -39,11 +39,14 @@ public class PersonalFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        Bundle bundle = getArguments();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
-            bundle.getBinder("newUser");
-        }
-        //TODO RecyclerView的Adapter
+
+
+
+//        Bundle bundle = getArguments();
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
+//            bundle.getBinder("newUser");
+//        }
+//        //TODO RecyclerView的Adapter
     }
 
     public void findViews(){
