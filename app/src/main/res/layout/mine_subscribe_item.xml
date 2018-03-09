@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:background="@color/Whilt"
+    android:layout_width="match_parent"
+    >
+
+    <LinearLayout
+        android:id="@+id/my_favor"
+        android:layout_marginRight="18dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+        tools:ignore="UseCompoundDrawables"
+        android:layout_marginEnd="18dp">
+            <ImageView
+                android:layout_gravity="center"
+                android:id="@+id/personal_sub_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                android:layout_marginStart="10dp"
+                tools:src="@mipmap/mybook_default"
+                tools:ignore="ContentDescription"
+                android:layout_marginLeft="10dp" />
+            <TextView
+                android:id="@+id/personal_sub_text"
+                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="@string/my_shelf"
+                android:textSize="15sp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginLeft="4dp" />
+        </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/go_to"
+        android:padding="6dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:background="@color/Whilt"
+        android:src="@mipmap/go"
+        android:layout_marginTop="3dp"
+        tools:ignore="ContentDescription"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        android:layout_marginEnd="10dp" />
+
+    <android.support.v7.widget.ScrollingTabContainerView.TabView
+        android:id="@+id/tab"
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
+        android:layout_below="@+id/my_favor" />
+
+</RelativeLayout>

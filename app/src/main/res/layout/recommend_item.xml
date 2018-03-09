@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="horizontal"
+    android:weightSum="7"
+    android:layout_height="wrap_content">
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_weight="5"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/author_head"
+            android:padding="1.2dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/halloffame"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="10dp"
+            tools:ignore="ContentDescription" />
+        <TextView
+            android:id="@+id/author_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="author_id"
+            android:layout_toRightOf="@id/author_head"
+            android:layout_toEndOf="@id/author_head"
+            android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="9dp"
+            android:textSize="15sp"
+            android:textColor="@color/un_select"
+            />
+        <TextView
+            android:id="@+id/article_title"
+            android:layout_below="@id/author_id"
+            tools:text="佛秀不负如来"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:textSize="20sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp" />
+        <TextView
+            android:id="@+id/intro"
+            tools:text = "爱与佛不可兼得，不负如来便负卿"
+            android:layout_marginTop="3dp"
+            android:layout_marginLeft="10dp"
+            android:layout_below="@id/article_title"
+            android:textSize="15sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp" />
+
+        <ImageView
+            android:id="@+id/read_icon"
+            android:layout_marginTop="18dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/intro"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:padding="2dp"
+            android:src="@mipmap/article_read_icon"
+            tools:ignore="ContentDescription" />
+        <TextView
+            android:id="@+id/count_read"
+            tools:text="1235"
+            android:textSize="15sp"
+            android:layout_marginTop="18dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/read_icon"
+            android:layout_below="@id/intro"
+            android:layout_toEndOf="@id/read_icon" />
+
+        <ImageView
+            android:id="@+id/collection_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/textView"
+            android:layout_marginLeft="18dp"
+            android:layout_marginStart="18dp"
+            android:layout_toEndOf="@+id/article_title"
+            android:layout_toRightOf="@+id/article_title"
+            android:padding="2dp"
+            android:src="@mipmap/article_fabulous_icon"
+            tools:ignore="ContentDescription" />
+        <TextView
+            tools:text="1235"
+            android:textSize="15sp"
+            android:layout_marginTop="18dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/read_icon"
+            android:layout_below="@id/intro"
+            android:layout_toEndOf="@id/collection_icon"
+            android:id="@+id/textView" />
+
+
+    </RelativeLayout>
+    <ImageView
+        android:id="@+id/article_img"
+        android:layout_weight="2"
+        android:src="@mipmap/ic_article"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        tools:ignore="ContentDescription" />
+</LinearLayout>
