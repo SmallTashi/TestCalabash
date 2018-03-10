@@ -19,4 +19,9 @@
   
   昨晚没怎么睡，现在离上课还有10分钟，收拾一下自己，找点东西吃，人前形象不能毁，  
   总之：
-      得之我辛，失之我命。
+      得之我辛，失之我命。         
+      
+      
+ ### 附带apk地址：  
+ 
+ https://github.com/SmallTashi/TestCalabash/blob/master/release/app-release.apk
