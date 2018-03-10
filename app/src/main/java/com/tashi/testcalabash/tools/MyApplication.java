@@ -4,6 +4,8 @@ import android.annotation.SuppressLint;
 import android.app.Application;
 import android.content.Context;
 
+import com.tashi.testcalabash.Date.User;
+
 /**
  * Created by SmartTahi on 2018/3/7.
  * 获得当前ActivityContext
@@ -13,6 +15,7 @@ import android.content.Context;
 public class MyApplication extends Application {
     @SuppressLint("StaticFieldLeak")
     private static Context thisContext;
+    public static User user;
 
     @Override
     public void onCreate() {
@@ -21,5 +24,13 @@ public class MyApplication extends Application {
     }
     public static Context getThisContext(){
         return thisContext;
+    }
+
+    public static void setUser(User user) {
+        MyApplication.user = user;
+    }
+
+    public static User getUser() {
+        return user;
     }
 }

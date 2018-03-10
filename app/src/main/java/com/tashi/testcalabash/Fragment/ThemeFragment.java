@@ -9,6 +9,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
 
 import com.tashi.testcalabash.R;
 
@@ -21,13 +23,24 @@ import java.util.List;
  */
 
 public class ThemeFragment extends Fragment {
+    WebView webview;
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.theme_world_fragment,container,false);
     }
 
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    @SuppressLint("SetJavaScriptEnabled")
+    public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        webview = view.findViewById(R.id.webView2);
+        WebSettings settings = webview.getSettings();
+        settings.setJavaScriptEnabled(true);
 
+        //支持缩放
+        settings.setUseWideViewPort(true);//设定支持viewport
+        settings.setLoadWithOverviewMode(true);
+        settings.setBuiltInZoomControls(true);
+        settings.setSupportZoom(true);//设定支持缩放
+        //打开的网址
+        webview.loadUrl("https://www.huluzc.com/explore");
     }
 }

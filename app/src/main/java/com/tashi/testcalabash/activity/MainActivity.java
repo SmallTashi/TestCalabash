@@ -37,7 +37,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     public RelativeLayout find;
     public RelativeLayout personal;
 
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)  //自动修复提示补上的
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.d("MainActivity", "onCreate");

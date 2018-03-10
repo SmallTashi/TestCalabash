@@ -17,6 +17,7 @@ import com.tashi.testcalabash.Fragment.PersonalFragment;
 import com.tashi.testcalabash.R;
 import com.tashi.testcalabash.tools.Api;
 import com.tashi.testcalabash.tools.HttpUtils;
+import com.tashi.testcalabash.tools.MyApplication;
 import com.tashi.testcalabash.tools.PackParameter;
 
 import org.json.JSONException;
@@ -72,10 +73,11 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                 }
                 else {
                     user = response.getuser(response.getDate());
-                    Bundle bundle = new Bundle();
-                    bundle.putParcelable("user",user);
-                    PersonalFragment personalFragment = new PersonalFragment();
-                    personalFragment.setArguments(bundle);
+                    MyApplication.setUser(user);
+//                    Bundle bundle = new Bundle();
+//                    bundle.putParcelable("user",user);
+//                    PersonalFragment personalFragment = new PersonalFragment();
+//                    personalFragment.setArguments(bundle);
                     Intent intent = new Intent(LoginActivity.this,MainActivity.class);
                     startActivity(intent);
                     finish();

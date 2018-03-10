@@ -3,6 +3,7 @@ package com.tashi.testcalabash.tools;
 import android.util.Log;
 
 import com.tashi.testcalabash.Date.Author;
+import com.tashi.testcalabash.Date.Question;
 import com.tashi.testcalabash.Date.User;
 import com.tashi.testcalabash.Date.Article;
 import com.tashi.testcalabash.Date.Theme;
@@ -52,6 +53,35 @@ public class JSONmanager {
         JSONObject object = new JSONObject(date);
         user.setToken(object.getString("token"));
     }
+
+    public static ArrayList<Question> getQuestionList(String date) throws JSONException {
+        ArrayList<Question> questions = new ArrayList<>();
+        try {
+            JSONObject item = new JSONObject(date);
+            JSONArray question = new JSONArray("question");
+            for (int i = 0; i <question.length() ; i++) {
+                Question questionItem = new Question();
+                JSONObject object = question.getJSONObject(i);
+                questionItem.setContent(object.getString("content"));
+                questionItem.setImages(object.getString("image"));
+                questionItem.setAnswerCount(object.getInt("answerCount"));
+                questionItem.setAuthorId(object.getInt("authorId"));
+                questionItem.setTitle(object.getString("title"));
+                questionItem.setDate(object.getString("date"));
+                questionItem.setNaive(object.getInt("naive"));
+                questionItem.setAuthorName(object.getString("authorName"));
+                questionItem.setExciting(object.getInt("exciting"));
+questionItem.setId(object.getInt("id"));
+questionItem.setAuthorAvatar(object.getString("authorAvatar"));
+
+            }
+        }catch (JSONException e){
+            e.printStackTrace();
+            Log.w("tag_recommend",e);
+        }
+        return questions;
+    }
+
 
     public static ArrayList<Article> getRecommendItem(String date) throws JSONException {
         ArrayList<Article> article = new ArrayList<>();

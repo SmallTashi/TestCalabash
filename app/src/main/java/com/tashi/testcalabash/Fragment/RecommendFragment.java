@@ -39,6 +39,6 @@ public class RecommendFragment extends Fragment {
         settings.setBuiltInZoomControls(true);
         settings.setSupportZoom(true);//设定支持缩放
         //打开的网址
-        webview.loadUrl("https://www.huluzc.com/profile/6be9bbf6d02011e7b8c00242ac120003");
+        webview.loadUrl("https://www.huluzc.com/calabash/article?page=1&page_per=40&order_by=[\"praise_num\",\"published_time\"]&condition={\"tags\":[]}");
     }
 }

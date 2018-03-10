@@ -42,8 +42,6 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
     private Button next;
     private String name;
     private String pwd;
-    private String phone;
-    private String verif;
 
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
@@ -81,11 +79,10 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         } else if (v == get) {
             this.name = username.getText().toString();
             this.pwd = password.getText().toString();
-            this.phone = phoneNumber.getText().toString();
-            this.verif = verification.getText().toString();
+            String phone = phoneNumber.getText().toString();
             if (name != null) {
                 String p = null;
-                String param = Api.VERIFICATION_head + name + Api.VERIFICATION_foot;
+                String param = Api.VERIFICATION_head + phone + Api.VERIFICATION_foot;
                 HttpUtils.sentHttpsRequest(p, param, new HttpUtils.Callback() {
                     @Override
                     public void onSuccess(HttpUtils.Response response) {
@@ -103,35 +100,32 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
             }
         }
         else if (next == v) {
-            if (verif == null) {
-                Toast.makeText(MyApplication.getThisContext(), "请小主输入验证码...", Toast.LENGTH_LONG).show();
-            } else if (pass == v) {
+            String verif = verification.getText().toString();
+            HttpUtils.sentHttpRequest(PackParameter.BHRegisterLogin(name,pwd, verif), Api.BH_REGISTER, new HttpUtils.Callback() {
+                @Override
+                public void onSuccess(HttpUtils.Response response) throws JSONException {
+                    User user = response.getNewuser(response.getDate());
+                    user.setPassword(pwd);
+                    Bundle args = new Bundle();
+                    args.putParcelable("newUser",user);
+                    PersonalFragment mine = new PersonalFragment();
+                    mine.setArguments(args);
+                    Intent intent = new Intent(RegisterActivity.this,MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+                @Override
+                public void onFiled(Exception e) {
+                    addToast(e.toString(),false);
+                }
+            });
+            if (pass == v) {
                 Intent intent = new Intent(this, P_registerActivity.class);
                 startActivity(intent);
                 finish();
             }
         }
-            else {
-                HttpUtils.sentHttpRequest(PackParameter.BHRegisterLogin(name,pwd, verif), Api.BH_REGISTER, new HttpUtils.Callback() {
-                    @Override
-                    public void onSuccess(HttpUtils.Response response) throws JSONException {
-                            User user = response.getNewuser(response.getDate());
-                            user.setPassword(pwd);
-                            Bundle args = new Bundle();
-                            args.putParcelable("newUser",user);
-                            PersonalFragment mine = new PersonalFragment();
-                            mine.setArguments(args);
-                            Intent intent = new Intent(RegisterActivity.this,MainActivity.class);
-                            startActivity(intent);
-                            finish();
-                    }
-                    @Override
-                    public void onFiled(Exception e) {
-                        addToast(e.toString(),false);
-                    }
-                });
-            }
-        }
+    }
     public void addToast(String s, boolean Short){
         if(Short){
             Toast.makeText(this,s,Toast.LENGTH_SHORT).show();

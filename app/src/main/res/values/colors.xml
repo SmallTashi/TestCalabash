@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <color name="colorPrimary">#FFFFFF</color>
     <color name="colorPrimaryDark">#000000</color>
     <color name="colorAccent">#ffffff</color>
     <color name="textColor">#2D2D2D</color>
     <color name="unSelectDrawable">#959595</color>
+    <color name="colorLine">#5CACEE</color>
+    <color name="backItem">#B9D3EE</color>
+    <color name="primary_material_light" tools:ignore="PrivateResource">#898989</color>
     <color name="allBackground">#b1b1b1</color>
     <color name="Whilt">#FFFFFF</color>
     <color name="login_button">#8C8C8C</color>

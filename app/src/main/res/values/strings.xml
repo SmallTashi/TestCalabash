@@ -1,6 +1,9 @@
 <resources>
+    <string name="content">content</string>
+    <string name="title">Title</string>
+    <string name="loading">Loading</string>
     <string name="app_name">CalabashWord</string>
-    <string name="loading">加载中…</string>
+
     <string name="user_name_log">请输入用户名（2到10字符）</string>
     <string name="password">请输入密码（6到18字符）</string>
     <string name="login">登  陆</string>

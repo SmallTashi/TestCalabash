@@ -1,9 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:background="#B3E5FC">
+    android:background="@color/backItem"
+    >
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Dialog"
+        android:textSize="15sp"
+        android:alpha="0.5"
+        android:textAppearance="@style/Base.Widget.AppCompat.EditText"
+        android:id="@+id/dialog"/>
     <android.support.v4.widget.SwipeRefreshLayout
         android:layout_below="@id/dialog"
         android:id="@+id/refreshLayout"
@@ -17,5 +27,9 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:scrollbars="vertical" />
+
+
     </android.support.v4.widget.SwipeRefreshLayout>
+
+
 </RelativeLayout>

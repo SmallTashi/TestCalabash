@@ -12,6 +12,7 @@ import com.tashi.testcalabash.R;
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by SmartTahi on 2018/2/28.
@@ -21,13 +22,15 @@ import java.util.ArrayList;
 public class PersonalFragmentAdapter extends RecyclerView.Adapter {
 
     private static final int MINE_HEAD = 0;
-    private static final int MINE_SUBSCRIBE = 1;
-    private static final int MINE_BOOK = 2;
     private static final int MINE_OTHERS = 3;
     private ArrayList<String> date ;
+    private HashMap<String,String> other;
+    private ArrayList<Integer> images;
 
-    public PersonalFragmentAdapter(ArrayList<String> date) {
+    public PersonalFragmentAdapter(ArrayList<String> date, HashMap<String,String> other,ArrayList<Integer> images) {
         this.date = date;
+        this.images = images;
+        this.other = other;
     }
 
     @Override
@@ -36,13 +39,7 @@ public class PersonalFragmentAdapter extends RecyclerView.Adapter {
             case MINE_HEAD:
                 View top = LayoutInflater.from(parent.getContext()).inflate(R.layout.personal_fragment_item,parent,false);
                 return new MineTopHolder(top);
-            case MINE_SUBSCRIBE:
-                View sub = LayoutInflater.from(parent.getContext()).inflate(R.layout.mine_subscribe_item,parent,false);
-                return new MineMidHolder(sub);
-            case MINE_BOOK:
-                View book = LayoutInflater.from(parent.getContext()).inflate(R.layout.personal_fragment_item,parent,false);
-                return new MineMidHolder(book);
-            case MINE_OTHERS:
+           case MINE_OTHERS:
                 View others = LayoutInflater.from(parent.getContext()).inflate(R.layout.personal_fragment_item,parent,false);
                 return new MineOtherHolder(others);
         }
@@ -51,9 +48,9 @@ public class PersonalFragmentAdapter extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        if (holder instanceof MineTopHolder){
+        if (holder instanceof MineTopHolder&&position==1){
             MineTopHolder topHolder = (MineTopHolder)holder;
-
+            topHolder.headShot.setImageResource(Integer.parseInt(date.get(0)));
         }
     }
 
@@ -79,7 +76,7 @@ class MineTopHolder extends RecyclerView.ViewHolder {
  Text follwed_count;
     public MineTopHolder(View itemView) {
         super(itemView);
-        headShot = (ImageView) itemView.findViewById(R.id.avator);
+        headShot = itemView.findViewById(R.id.avator);
         name = itemView.findViewById(R.id.user_name);
         rank = itemView.findViewById(R.id.rank);
         folling_count = itemView.findViewById(R.id.following_num);
@@ -99,8 +96,6 @@ private TabLayout mTabLayout;
         mView = itemView;
         mImageView = itemView.findViewById(R.id.personal_sub_image);
         mText = itemView.findViewById(R.id.personal_sub_text);
-        mTabLayout = itemView.findViewById(R.id.tab);
-
     }
 
 }

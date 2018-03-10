@@ -22,7 +22,7 @@
         <item name="windowActionBar">false</item>
     </style>
     <style name="TabSelect" parent="Base.Widget.Design.TabLayout">
-        <item name="tabIndicatorColor">@color/Whilt</item>
+        <item name="tabIndicatorColor">@color/button</item>
         <item name="android:textSize">10sp</item>
         <item name="tabIndicatorHeight">3dp</item>
         <item name="tabSelectedTextColor">#000000</item>
